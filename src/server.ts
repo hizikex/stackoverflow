@@ -1,6 +1,6 @@
 import { setting } from "./core/config/application";
 import app from "./app";
-import { logger } from "./core/config/utils/logger";
+import { logger } from "./core/utils/logger";
 
 const startServer = async (): Promise<void> => {
   app.listen(setting.port, () => {
