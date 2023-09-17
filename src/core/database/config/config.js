@@ -1,23 +1,9 @@
-{
-  "development": {
-    "username": "root",
-    "password": "passoword",
-    "database": "stackoverflow",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  }
+require('dotenv').config();
+
+const databaseConfig = {
+  database: process.env.MYSQL_DATABASE || 'stackover',
+  username: process.env.MYSQL_USERNAME || 'root',
+  password: process.env.MYSQL_PASSWORD || 'password',
+  host: process.env.MYSQL_HOST || '127.0.0.1',
+  dialect: 'mysql'
 }
