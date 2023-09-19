@@ -6,7 +6,7 @@ export interface UserAttributes {
     phone: string;
     bio: string;
     image: string;
-    isVerified: boolean;
-    isAdmin: boolean;
+    is_verified: boolean;
+    is_admin: boolean;
     reputation: number;
 }

@@ -7,3 +7,6 @@ const databaseConfig = {
   host: process.env.MYSQL_HOST || '127.0.0.1',
   dialect: 'mysql'
 }
+
+const { database, username, password, ...sequelizeDatabaseConfig } = databaseConfig;
+export const sequelize = new Sequelize(database, username, password, sequelizeDatabaseConfig );
