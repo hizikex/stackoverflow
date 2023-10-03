@@ -8,3 +8,4 @@ const morgan_1 = __importDefault(require("morgan"));
 const app = (0, express_1.default)();
 app.use((0, morgan_1.default)('date[web] :method :url :status :response-time ms - :res[content-length]'));
 exports.default = app;
+//# sourceMappingURL=app.js.map

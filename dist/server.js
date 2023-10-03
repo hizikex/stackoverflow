@@ -12,16 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const application_1 = require("./core/config/application");
 const app_1 = __importDefault(require("./app"));
-const apllication_1 = require("./core/config/apllication");
-const logger_1 = require("./core/config/utils/logger");
+const logger_1 = require("./core/utils/logger");
+const sequelize_1 = require("./core/database/sequelize");
+sequelize_1.sequelize.sync().then(() => {
+    logger_1.logger.info('Connected to the Database');
+});
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
-    app_1.default.listen(apllication_1.setting.port, () => {
+    app_1.default.listen(application_1.setting.port, () => {
         logger_1.logger.info(`
-        ###########################################
-        ♦️ App listening on port: ${apllication_1.setting.port} ♦️
-        ############################################
+        ####################################################
+        ♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️ App listening on port: ${application_1.setting.port} ♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️
+        ####################################################
         `);
     });
 });
 startServer();
+//# sourceMappingURL=server.js.map

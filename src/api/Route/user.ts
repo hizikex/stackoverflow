@@ -1,0 +1,8 @@
+import { Router } from "express";
+import * as RequestHandler from '../requestHandlers/user';
+
+const router = Router();
+
+router.post('/', RequestHandler.registerUser);
+
+export { router as userRoutes };

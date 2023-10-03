@@ -1,16 +1,16 @@
 import { Model, DataTypes, InferAttributes, CreationOptional, InferCreationAttributes } from 'sequelize';
-import { sequelize } from '../database/config/database';
+import { sequelize } from '../database/sequelize';
 import { UserAttributes } from '../interfaces/user';
 
-export class User extends Model<InferAttributes<User>, InferCreationAttributes<User, { omit: 'id' }>> implements UserAttributes {
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User, { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' }>> implements UserAttributes {
 
 declare id: CreationOptional<number>;
 declare username: string;
 declare email: string;
 declare password: string;
 declare phone: string;
-declare bio: string;
-declare image: string;
+declare bio?: string;
+declare image?: string;
 declare is_verified: boolean;
 declare is_admin: boolean;
 declare reputation: number;
