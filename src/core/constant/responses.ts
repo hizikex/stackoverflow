@@ -1,5 +1,7 @@
 export enum ResponseMessage {
     SuccessfulRegistration = 'Registration successful',
     SuccessfulLogin = 'Login successful',
-    UpdateUser = 'User updated successfully'
+    LogoutSuccessful = 'Logged out successfully',
+    UpdateUser = 'User updated successfully',
+    UserProfile = 'User profile'
 }

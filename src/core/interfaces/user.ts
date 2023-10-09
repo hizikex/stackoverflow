@@ -34,15 +34,26 @@ export interface UserLoginRequest {
 }
 
 export interface UserLoginResponse {
-  email: string,
-  phone: string,
-  token: string,
-  bio?: string,
-  image?: string
+  email: string;
+  phone: string;
+  token: string;
+  bio?: string;
+  image?: string;
 }
 
 export interface UpdateUserProfile {
   phone?: string;
   bio?: string;
   image?: string;
+}
+
+export interface ProfileResponse {
+  email: string;
+  phone: string;
+  bio?: string;
+  image?: string;
+}
+
+export interface LogoutUser {
+  token: string;
 }

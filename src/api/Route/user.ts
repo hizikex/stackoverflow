@@ -6,6 +6,5 @@ const router = Router();
 
 router.post('/', RequestHandler.registerUser);
 router.post('/login', RequestHandler.loginUser);
-router.patch('/edit-profile', authenticate, RequestHandler.updateUser);
 
 export { router as userRoutes };

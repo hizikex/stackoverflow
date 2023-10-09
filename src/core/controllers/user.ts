@@ -1,11 +1,10 @@
-import { UpdateUserProfile, UserAttributes, UserLoginRequest, UserLoginResponse, UserRegistrationRequest, UserRegistrationResponse } from "../interfaces/user";
+import { LogoutUser, UserLoginRequest, UserLoginResponse, UserRegistrationRequest, UserRegistrationResponse } from "../interfaces/user";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from "../models/users";
 import AuthorizationError from "../errors/AuthorizationError";
 import { setting } from "../config/application";
 import { logger } from "../utils/logger";
-import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 
 export const processUserRegistration = async ( body: UserRegistrationRequest ): Promise<UserRegistrationResponse> => {
     const userExist = await User.findOne({ where: {email: body.email} });
@@ -62,20 +61,7 @@ export const processUserLogin = async (body: UserLoginRequest): Promise<UserLogi
         token: generateToken,
         bio: userExist.bio,
         image: userExist.image        
-    }
+    };
 
     return result;
-}
-
-export const updateUserProfile = async ( currentUser: User | undefined, body: UpdateUserProfile ): Promise<any> => {
-    if ( !currentUser ) {
-        const error = new Error('not found')
-        const resourceNotFoundError = new ResourceNotFoundError("User not found", error, {})
-        throw resourceNotFoundError
-    }
-
-    const updateUser = await User.update(body, {where: {id: currentUser.id}});
-
-    return updateUser;
-}
-
+};

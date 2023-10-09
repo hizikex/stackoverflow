@@ -6,7 +6,7 @@ export default class RequestValidationError extends DomainError {
 
   protected httpCode = 404;
 
-  public constructor(message: string = Errors.RESOURCE_NOT_FOUND, error: Error, data: any = null, success = false) {
+  public constructor(message: string = Errors.RESOURCE_NOT_FOUND, error: Error | null, data: any = null, success = false) {
     super(message, error, data, success);
     Error.captureStackTrace(this, this.constructor);
   }
