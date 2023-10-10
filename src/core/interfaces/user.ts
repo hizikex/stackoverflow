@@ -18,9 +18,6 @@ export interface UserRegistrationRequest {
   phone: string;
   bio?: string;
   image?: string;
-  is_verified: boolean;
-  is_admin: boolean;
-  reputation: number;
 }
 
 export interface UserRegistrationResponse {

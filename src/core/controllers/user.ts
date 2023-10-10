@@ -1,4 +1,4 @@
-import { LogoutUser, UserLoginRequest, UserLoginResponse, UserRegistrationRequest, UserRegistrationResponse } from "../interfaces/user";
+import { UserLoginRequest, UserLoginResponse, UserRegistrationRequest, UserRegistrationResponse } from "../interfaces/user";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from "../models/users";
@@ -25,6 +25,7 @@ export const processUserRegistration = async ( body: UserRegistrationRequest ): 
         image: body.image 
     });
 
+    logger.info('User registration successful')
     return {message: 'User registration successful', user: newUser}
 }
 
