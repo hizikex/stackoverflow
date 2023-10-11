@@ -6,9 +6,9 @@ export interface QuestionAttributes {
 }
 
 export interface QuestionRequest {
+    tagList: any;
     title: string;
     content: string;
-    tagList: string[];
 }
 
 export interface QuestionCreationResponse {

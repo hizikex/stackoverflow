@@ -1,17 +1,25 @@
 'use strict';
-/** @type {import('sequelize-cli').Migration} */
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('question_tags', {
       question_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        references: {
+          model: 'questions',
+          key: 'id'
+        }
       },
       tag_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        references: {
+          model: 'tags',
+          key: 'id'
+        }
       },
       created_at: {
         allowNull: false,

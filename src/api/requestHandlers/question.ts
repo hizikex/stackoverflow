@@ -12,7 +12,7 @@ export const createQuestion: RequestHandler = async (
   try {
     // const validateQuestionData = validateQuestionCreation(req.body);
     const response = await questionController.processQuestionCreation(
-      res.locals.user, req.body
+        req.body, res.locals.user
     );
 
     res.json(responseHandler(response, ResponseMessage.QuestionCreation));

@@ -6,4 +6,4 @@ const router = Router();
 
 router.post('/', authenticate, RequestHandler.createQuestion);
 
-export { router as profileRoutes };
+export { router as questionRoutes };

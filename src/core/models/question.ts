@@ -6,7 +6,7 @@ import {
   InferCreationAttributes,
 } from "sequelize";
 import { sequelize } from "../database/sequelize";
-import { QuestionAttributes } from "../interfaces/question";
+import { QuestionAttributes } from "../interfaces/questions";
 import { User } from "./users";
 import { Tag } from "./tags";
 
@@ -29,6 +29,7 @@ Question.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      allowNull: false,
     },
     author_id: {
       type: DataTypes.INTEGER,

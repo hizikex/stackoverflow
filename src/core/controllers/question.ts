@@ -1,10 +1,10 @@
-import { Question } from "../models/questions";
+import { Question } from "../models/question";
 import AuthorizationError from "../errors/AuthorizationError";
 import { logger } from "../utils/logger";
 import {
   QuestionCreationResponse,
   QuestionRequest,
-} from "../interfaces/question";
+} from "../interfaces/questions";
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import { Tag } from "../models/tags";
 import { QuestionTag } from "../models/question_tags";
@@ -23,26 +23,22 @@ export const processQuestionCreation = async (
     throw resourceNotFoundError;
   }
 
-  let tags: Tag[] = [];
-
   const newQuestion = await Question.create({
     author_id: Author.id,
     title: body.title,
     content: body.content,
   });
 
-  if (body.tagList) {
-    await Promise.all(
+    const tags =await Promise.all(
       body.tagList.map((tagName: any) =>
         Tag.create({
           name: tagName,
         })
       )
     );
-  }
 
   await Promise.all(
-    tags.map((tag: { id: any; }) =>
+    tags.map((tag: { id: any }) =>
       QuestionTag.create({
         question_id: newQuestion.id,
         tag_id: tag.id,
@@ -52,8 +48,8 @@ export const processQuestionCreation = async (
 
   const responseData = {
     ...newQuestion.toJSON(),
-    tagList: body.tagList
-  }
+    tagList: body.tagList,
+  };
 
-  return {message: 'Question created succesfully', question: responseData};
+  return { message: "Question created succesfully", question: responseData };
 };
