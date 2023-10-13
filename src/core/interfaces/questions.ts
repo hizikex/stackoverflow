@@ -15,3 +15,10 @@ export interface QuestionCreationResponse {
   message: string;
   question: any;
 }
+
+export interface QuestionSearchParams {
+  tagName?: string;
+  author?: string;
+  limit: number;
+  offset: number;
+}

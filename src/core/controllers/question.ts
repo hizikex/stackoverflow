@@ -4,10 +4,12 @@ import { logger } from "../utils/logger";
 import {
   QuestionCreationResponse,
   QuestionRequest,
+  QuestionSearchParams,
 } from "../interfaces/questions";
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import { Tag } from "../models/tags";
 import { QuestionTag } from "../models/question_tags";
+import { User } from "../models/users";
 
 export const processQuestionCreation = async (
   body: QuestionRequest,
@@ -52,4 +54,30 @@ export const processQuestionCreation = async (
   };
 
   return { message: "Question created succesfully", question: responseData };
+};
+
+export const processListQuestions = async (SearchParams: QuestionSearchParams): Promise<Question[]> => {
+  const whereClause: {[key: string]: any} = {};
+  const getAllQuestions = await Question.findAndCountAll({
+    where: whereClause,
+    limit: SearchParams.limit,
+    offset: SearchParams.offset,
+    attributes: ['title'],
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['username']
+      },
+      {
+        model: Tag,
+        as: 'tag',
+        attributes: ['name']
+      }
+    ]
+  })
+
+  if (!getAllQuestions) {
+    throw new ResourceNotFoundError('No question found', null);
+  }
 };
