@@ -10,9 +10,9 @@ export const createQuestion: RequestHandler = async (
   next
 ): Promise<void> => {
   try {
-    // const validateQuestionData = validateQuestionCreation(req.body);
+    const validateQuestionData = validateQuestionCreation(req.body);
     const response = await questionController.processQuestionCreation(
-        req.body, res.locals.user
+      validateQuestionData, res.locals.user
     );
 
     res.json(responseHandler(response, ResponseMessage.QuestionCreation));

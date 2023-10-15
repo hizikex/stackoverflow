@@ -58,7 +58,7 @@ export const processQuestionCreation = async (
 
 export const processListQuestions = async (SearchParams: QuestionSearchParams): Promise<Question[]> => {
   const whereClause: {[key: string]: any} = {};
-  const getAllQuestions = await Question.findAndCountAll({
+  const questions = await Question.findAll({
     where: whereClause,
     limit: SearchParams.limit,
     offset: SearchParams.offset,
@@ -77,7 +77,9 @@ export const processListQuestions = async (SearchParams: QuestionSearchParams): 
     ]
   })
 
-  if (!getAllQuestions) {
+  if (!questions) {
     throw new ResourceNotFoundError('No question found', null);
   }
+
+  return questions ? questions.map(questions => questions): [];
 };
