@@ -31,22 +31,19 @@ export const processQuestionCreation = async (
     content: body.content,
   });
 
-    const tags =await Promise.all(
+    const tag = await Promise.all(
       body.tagList.map((tagName: any) =>
-        Tag.create({
+        Tag.findOrCreate({ where: {
           name: tagName,
-        })
+        } })
       )
     );
 
-  await Promise.all(
-    tags.map((tag: { id: any }) =>
+  await 
       QuestionTag.create({
         question_id: newQuestion.id,
         tag_id: tag.id,
-      })
-    )
-  );
+      });
 
   const responseData = {
     ...newQuestion.toJSON(),

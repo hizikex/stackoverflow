@@ -17,6 +17,7 @@ export class Question
   >
   implements QuestionAttributes
 {
+  tagList: (string | Tag)[];
   declare id: CreationOptional<number>;
   declare author_id: number;
   declare title: string;

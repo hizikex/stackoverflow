@@ -12,15 +12,10 @@ import { Question } from "./question";
 export class Tag
   extends Model<
     InferAttributes<Tag>,
-    InferCreationAttributes<Tag, { omit: "id" }>
+    InferCreationAttributes<Tag>
   >
   implements TagAttributes
 {
-  static map(
-    arg0: (tag: { id: any }) => Promise<import("./question_tags").QuestionTag>
-  ): any {
-    throw new Error("Method not implemented.");
-  }
   declare id: CreationOptional<number>;
   declare name: string;
 }
@@ -35,7 +30,6 @@ Tag.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
   },
   {

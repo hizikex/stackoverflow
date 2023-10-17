@@ -4,5 +4,6 @@ export enum ResponseMessage {
     LogoutSuccessful = 'Logged out successfully',
     UpdateUser = 'User updated successfully',
     UserProfile = 'User profile',
-    QuestionCreation = 'Question created successfully'
+    QuestionCreation = 'Question created successfully',
+    ListQuestions = 'List of questions'
 }

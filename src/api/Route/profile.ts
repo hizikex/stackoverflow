@@ -7,5 +7,4 @@ const router = Router();
 router.patch('/edit', authenticate, RequestHandler.updateUser);
 router.get('/:username', authenticate, RequestHandler.userProfile);
 
-
 export { router as profileRoutes };

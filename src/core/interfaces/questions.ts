@@ -1,14 +1,17 @@
+import { Tag } from "../models/tags";
+
 export interface QuestionAttributes {
     id: number;
     author_id: number;
     title: string;
     content: string;
+    tagList: (Tag | string)[]
 }
 
 export interface QuestionRequest {
-    tagList: any;
     title: string;
     content: string;
+    tagList: (Tag | string)[]
 }
 
 export interface QuestionCreationResponse {
