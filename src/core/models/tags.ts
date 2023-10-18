@@ -7,7 +7,6 @@ import {
 } from "sequelize";
 import { sequelize } from "../database/sequelize";
 import { TagAttributes } from "../interfaces/tag";
-import { Question } from "./question";
 
 export class Tag
   extends Model<

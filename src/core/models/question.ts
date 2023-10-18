@@ -17,7 +17,6 @@ export class Question
   >
   implements QuestionAttributes
 {
-  tagList: (string | Tag)[];
   declare id: CreationOptional<number>;
   declare author_id: number;
   declare title: string;
@@ -56,4 +55,9 @@ Question.init(
 Question.belongsTo(User, {
   foreignKey: "author_id",
   as: "users",
+});
+
+Question.belongsToMany(Tag, {
+  through: "QuestionTag",
+  as: "tags",
 });
