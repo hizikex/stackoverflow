@@ -4,12 +4,13 @@ import { logger } from "../utils/logger";
 import {
   QuestionCreationResponse,
   QuestionRequest,
-  QuestionSearchParams,
+  QuestionSearchParams
 } from "../interfaces/questions";
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import { Tag } from "../models/tags";
 import { QuestionTag } from "../models/question_tags";
 import { User } from "../models/users";
+import { Op } from "sequelize";
 
 export const processQuestionCreation = async (
   body: QuestionRequest,
@@ -46,34 +47,58 @@ export const processQuestionCreation = async (
     ...newQuestion.toJSON(),
     tagList: body.tagList,
   };
-
+  logger.info('Question creation successful');
   return { message: "Question created succesfully", question: responseData };
 };
 
-export const processListQuestions = async (SearchParams: QuestionSearchParams): Promise<Question[]> => {
+export const processListQuestions = async ( searchParams: QuestionSearchParams ): Promise<Question[]> => {
   const whereClause: {[key: string]: any} = {};
+
+  if (searchParams.author) {
+    const user = await User.findOne({
+      where: { username: searchParams.author }
+    });
+
+    if (user) {
+      whereClause.author_id = user.id;
+    } else {
+      return [];
+    }
+  }
+
+  if (searchParams.tagName) {
+    const tag = await Tag.findOne({
+      where: { name: searchParams.tagName }
+    });
+
+    if (tag) {
+      const questions = await QuestionTag.findAll({
+        where: { tag_id: tag.id },
+        attributes: ['question_id']
+      });
+      whereClause.id = {[Op.in]: questions.map((items) => items.question_id)}
+    } else {
+      return [];
+    }
+  }
+
   const questions = await Question.findAll({
     where: whereClause,
-    limit: SearchParams.limit,
-    offset: SearchParams.offset,
-    attributes: ['title'],
+    limit: searchParams.limit,
+    offset: searchParams.offset,
+    attributes: ['title', 'content'],
     include: [
       {
         model: User,
-        as: 'user',
+        as: 'author',
         attributes: ['username']
-      },
-      {
-        model: Tag,
-        as: 'tag',
-        attributes: ['name']
       }
     ]
-  })
+  });
 
   if (!questions) {
     throw new ResourceNotFoundError('No question found', null);
   }
-
+  logger.info('Question liscreation successful');
   return questions ? questions.map(questions => questions): [];
 };

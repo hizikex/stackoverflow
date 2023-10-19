@@ -23,6 +23,7 @@ export const createQuestion: RequestHandler = async (
 
 export const ListQuestions: RequestHandler = async (req, res, next): Promise<void> => {
   const validQuestionList = questionListQuerySchema(req.query);
+
   const response = await questionController.processListQuestions(validQuestionList);
 
   res.json(responseHandler(response, ResponseMessage.ListQuestions))

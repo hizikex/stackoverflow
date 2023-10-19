@@ -34,6 +34,10 @@ Question.init(
     author_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -54,10 +58,10 @@ Question.init(
 
 Question.belongsTo(User, {
   foreignKey: "author_id",
-  as: "users",
+  as: "author",
 });
 
 Question.belongsToMany(Tag, {
-  through: "QuestionTag",
+  through: "QuestionTags",
   as: "tags",
 });
