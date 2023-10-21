@@ -3,6 +3,7 @@ import AuthorizationError from "../errors/AuthorizationError";
 import { logger } from "../utils/logger";
 import {
   QuestionCreationResponse,
+  QuestionDeletionResponse,
   QuestionRequest,
   QuestionSearchParams
 } from "../interfaces/questions";
@@ -101,4 +102,20 @@ export const processListQuestions = async ( searchParams: QuestionSearchParams )
   }
   logger.info('Question liscreation successful');
   return questions ? questions.map(questions => questions): [];
+};
+
+export const processDeleteQuestion = async (questionId: string): Promise<QuestionDeletionResponse> => {
+  const question = await Question.findOne({ where: {id: questionId} });
+  
+  if (!question) {
+    throw new ResourceNotFoundError('Question not found', null);
+  }
+  
+  await QuestionTag.destroy({
+    where: { question_id: questionId },
+  });
+
+  await Question.destroy({ where: {id: questionId} } );
+
+  return { message: "Question deleted succesfully" };
 };

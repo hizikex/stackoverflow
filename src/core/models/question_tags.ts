@@ -6,8 +6,6 @@ import {
 } from "sequelize";
 import { sequelize } from "../database/sequelize";
 import { QuestionTagAttributes } from "../interfaces/question_tag";
-import { Question } from "./question";
-import { Tag } from "./tags";
 
 export class QuestionTag
   extends Model<
@@ -39,13 +37,3 @@ QuestionTag.init(
     underscored: true,
   }
 );
-
-QuestionTag.belongsTo(Question, {
-  foreignKey: "question_id",
-  as: "question",
-});
-
-QuestionTag.belongsTo(Tag, {
-  foreignKey: 'tag_id',
-  as: 'tag',
-});

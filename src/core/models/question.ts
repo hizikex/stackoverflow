@@ -9,6 +9,7 @@ import { sequelize } from "../database/sequelize";
 import { QuestionAttributes } from "../interfaces/questions";
 import { User } from "./users";
 import { Tag } from "./tags";
+import { QuestionTag } from "./question_tags";
 
 export class Question
   extends Model<
@@ -61,7 +62,7 @@ Question.belongsTo(User, {
   as: "author",
 });
 
-Question.belongsToMany(Tag, {
-  through: "QuestionTags",
-  as: "tags",
+Question.hasMany(QuestionTag, {
+  foreignKey: "question_id",
+  onDelete: 'CASCADE'
 });

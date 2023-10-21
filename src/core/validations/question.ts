@@ -34,3 +34,12 @@ export const questionListQuerySchema = (requestData: {[key: string]: any}): Ques
     })
   );
 };
+
+export const deleteQuestionSchema = (requestData: {[key: string]: any}): number => {
+  return validate(
+    requestData,
+    Joi.object({
+      questionId: Joi.number().min(1).required()
+    })
+  );
+};

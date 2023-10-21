@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { responseHandler } from "../../core/helpers/utilities";
 import * as questionController from "../../core/controllers/question";
-import { questionListQuerySchema, validateQuestionCreation } from "../../core/validations/question";
+import { deleteQuestionSchema, questionListQuerySchema, validateQuestionCreation } from "../../core/validations/question";
 import { ResponseMessage } from "../../core/constant/responses";
 
 export const createQuestion: RequestHandler = async (
@@ -27,4 +27,13 @@ export const ListQuestions: RequestHandler = async (req, res, next): Promise<voi
   const response = await questionController.processListQuestions(validQuestionList);
 
   res.json(responseHandler(response, ResponseMessage.ListQuestions))
+};
+
+export const deleteQuestion: RequestHandler = async (req, res, next): Promise<void> => {
+  // const validDeleteParams = deleteQuestionSchema(req.params);
+  console.log(req.params.questionId);
+  
+  const response = await questionController.processDeleteQuestion(req.params.questionId);
+
+  res.json(responseHandler(response, ResponseMessage.DeleteQuestion))
 };

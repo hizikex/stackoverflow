@@ -22,3 +22,7 @@ export interface QuestionSearchParams {
   limit: number;
   offset: number;
 }
+
+export interface QuestionDeletionResponse {
+  message: string;
+}
