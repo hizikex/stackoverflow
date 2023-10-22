@@ -100,7 +100,7 @@ export const processListQuestions = async ( searchParams: QuestionSearchParams )
   if (!questions) {
     throw new ResourceNotFoundError('No question found', null);
   }
-  logger.info('Question liscreation successful');
+  logger.info('List question successful');
   return questions ? questions.map(questions => questions): [];
 };
 

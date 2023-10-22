@@ -6,5 +6,7 @@ export enum ResponseMessage {
     UserProfile = 'User profile',
     QuestionCreation = 'Question created successfully',
     ListQuestions = 'List of questions',
-    DeleteQuestion = 'Question deleted successfully'
-}
+    DeleteQuestion = 'Question deleted successfully',
+    GetTag = 'Tag',
+    UpdateTag = 'Tag updated successfully'
+};

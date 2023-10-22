@@ -66,7 +66,3 @@ export const processUserLogin = async (body: UserLoginRequest): Promise<UserLogi
 
     return result;
 };
-
-// export const processGetAllUsers = async () => {
-//     const users = await User.findAll({where: ]})
-// }

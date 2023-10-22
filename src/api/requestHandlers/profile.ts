@@ -3,6 +3,7 @@ import { responseHandler } from "../../core/helpers/utilities";
 import * as profileController from "../../core/controllers/profile";
 import { validateUpdate } from "../../core/validations/userValidations";
 import { ResponseMessage } from "../../core/constant/responses";
+
 export const updateUser: RequestHandler = async (
   req,
   res,

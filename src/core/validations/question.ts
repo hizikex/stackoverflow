@@ -16,30 +16,38 @@ export const validateQuestionCreation = (requestData: {
   const result = schema.validate(requestData);
 
   if (result.error) {
-    const relevantError = new Error('Bad request occurred');
-    throw new BadRequestError(Errors.BAD_REQUEST, relevantError, result.error.details[0].message);
+    const relevantError = new Error("Bad request occurred");
+    throw new BadRequestError(
+      Errors.BAD_REQUEST,
+      relevantError,
+      result.error.details[0].message
+    );
   }
 
   return result.value as QuestionRequest;
 };
 
-export const questionListQuerySchema = (requestData: {[key: string]: any}): QuestionSearchParams => {
+export const questionListQuerySchema = (requestData: {
+  [key: string]: any;
+}): QuestionSearchParams => {
   return validate(
     requestData,
     Joi.object({
       author: Joi.string().optional(),
       tagName: Joi.string().optional(),
       limit: Joi.number().min(1).default(10),
-      offset: Joi.number().min(0).default(0)
+      offset: Joi.number().min(0).default(0),
     })
   );
 };
 
-export const deleteQuestionSchema = (requestData: {[key: string]: any}): number => {
+export const deleteQuestionSchema = (requestData: {
+  [key: string]: any;
+}): number => {
   return validate(
     requestData,
     Joi.object({
-      questionId: Joi.number().min(1).required()
+      questionId: Joi.number().min(1).required(),
     })
   );
 };
