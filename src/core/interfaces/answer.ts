@@ -1,6 +1,6 @@
-export interface QuestionAttributes {
+export interface AnswerAttributes {
     id: number;
     question_id: number;
-    user_id: string;
+    user_id: number;
     content: string;
 }

@@ -1,25 +1,71 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class answers extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  answers.init({
-    content: DataTypes.STRING,
-    user_id: DataTypes.NUMBER,
-    question_id: DataTypes.NUMBER
-  }, {
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  CreationOptional,
+  InferCreationAttributes,
+} from "sequelize";
+import { sequelize } from "../database/sequelize";
+import { User } from "./users";
+import { AnswerAttributes } from "../interfaces/answer";
+import { Question } from "./question";
+
+export class Answer
+  extends Model<
+    InferAttributes<Answer>,
+    InferCreationAttributes<Answer, { omit: "id" }>
+  >
+  implements AnswerAttributes
+{
+  declare id: CreationOptional<number>;
+  declare user_id: number;
+  declare question_id: number;
+  declare content: string;
+}
+
+Answer.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'User',
+        key: 'id',
+      },
+    },
+    question_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Question',
+        key: 'id',
+      },
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+  },
+  {
     sequelize,
-    modelName: 'answers',
-  });
-  return answers;
-};
+    tableName: "answers",
+    underscored: true,
+  }
+);
+
+Answer.belongsTo(User, {
+  foreignKey: "id",
+  as: "user_id",
+});
+
+Answer.belongsTo(Question, {
+  foreignKey: "id",
+  as: "question_id",
+});
