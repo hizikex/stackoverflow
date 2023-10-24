@@ -1,8 +1,8 @@
 import DomainError from './DomainError';
 import { Errors } from '../constant/errors';
 
-export default class RequestValidationError extends DomainError {
-  protected error_name = 'validation_error';
+export default class ResourceNotFoundError extends DomainError {
+  protected error_name = 'not_found';
 
   protected httpCode = 404;
 

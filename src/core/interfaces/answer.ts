@@ -4,3 +4,12 @@ export interface AnswerAttributes {
     user_id: number;
     content: string;
 }
+
+export interface AnswerCreationRequest {
+    content: string;
+}
+
+export interface AnswerCreationResponse {
+    message: string;
+    answer: any;
+}

@@ -8,5 +8,6 @@ export enum ResponseMessage {
     ListQuestions = 'List of questions',
     DeleteQuestion = 'Question deleted successfully',
     GetTag = 'Tag',
-    UpdateTag = 'Tag updated successfully'
+    UpdateTag = 'Tag updated successfully',
+    CreateAnswer = 'Answer created successfully'
 };

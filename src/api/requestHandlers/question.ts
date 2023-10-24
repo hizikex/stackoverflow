@@ -22,15 +22,23 @@ export const createQuestion: RequestHandler = async (
 };
 
 export const ListQuestions: RequestHandler = async (req, res, next): Promise<void> => {
-  const validQuestionList = questionListQuerySchema(req.query);
+  try {
+    const validQuestionList = questionListQuerySchema(req.query);
 
-  const response = await questionController.processListQuestions(validQuestionList);
-
-  res.json(responseHandler(response, ResponseMessage.ListQuestions))
+    const response = await questionController.processListQuestions(validQuestionList);
+  
+    res.json(responseHandler(response, ResponseMessage.ListQuestions))
+  } catch (error) {
+    next(error)
+  }
 };
 
 export const deleteQuestion: RequestHandler = async (req, res, next): Promise<void> => {
-  const response = await questionController.processDeleteQuestion(req.params.questionId);
+  try {
+    const response = await questionController.processDeleteQuestion(req.params.questionId);
 
-  res.json(responseHandler(response, ResponseMessage.DeleteQuestion))
+    res.json(responseHandler(response, ResponseMessage.DeleteQuestion))
+  } catch (error) {
+    next(error)
+  }
 };

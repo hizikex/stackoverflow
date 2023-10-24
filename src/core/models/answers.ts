@@ -7,8 +7,8 @@ import {
 } from "sequelize";
 import { sequelize } from "../database/sequelize";
 import { User } from "./users";
-import { AnswerAttributes } from "../interfaces/answer";
 import { Question } from "./question";
+import { AnswerAttributes } from "../interfaces/answer";
 
 export class Answer
   extends Model<
@@ -62,10 +62,10 @@ Answer.init(
 
 Answer.belongsTo(User, {
   foreignKey: "id",
-  as: "user_id",
+  as: "user",
 });
 
 Answer.belongsTo(Question, {
   foreignKey: "id",
-  as: "question_id",
+  as: "question",
 });

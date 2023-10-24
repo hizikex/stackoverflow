@@ -1,5 +1,4 @@
 import { Question } from "../models/question";
-import AuthorizationError from "../errors/AuthorizationError";
 import { logger } from "../utils/logger";
 import {
   QuestionCreationResponse,
