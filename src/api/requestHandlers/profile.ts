@@ -29,7 +29,6 @@ export const userProfile: RequestHandler = async (
 ): Promise<void> => {
   try {
     const response = await profileController.getUserProfile(
-      req.params.username,
       res.locals.user
     );
 

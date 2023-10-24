@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerUser = void 0;
+exports.loginUser = exports.registerUser = void 0;
 const utilities_1 = require("../../core/helpers/utilities");
 const userController = __importStar(require("../../core/controllers/user"));
 const userValidations_1 = require("../../core/validations/userValidations");
@@ -48,4 +48,15 @@ const registerUser = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.registerUser = registerUser;
+const loginUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const validateLoginData = (0, userValidations_1.validateLogin)(req.body);
+        const response = yield userController.processUserLogin(validateLoginData);
+        res.json((0, utilities_1.responseHandler)(response, responses_1.ResponseMessage.SuccessfulLogin));
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.loginUser = loginUser;
 //# sourceMappingURL=user.js.map

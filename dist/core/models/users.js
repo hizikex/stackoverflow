@@ -56,6 +56,6 @@ User.init({
 }, {
     sequelize: sequelize_2.sequelize,
     tableName: 'users',
-    timestamps: false
+    underscored: true
 });
 //# sourceMappingURL=users.js.map

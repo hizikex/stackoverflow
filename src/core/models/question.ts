@@ -8,7 +8,6 @@ import {
 import { sequelize } from "../database/sequelize";
 import { QuestionAttributes } from "../interfaces/questions";
 import { User } from "./users";
-import { Tag } from "./tags";
 import { QuestionTag } from "./question_tags";
 
 export class Question

@@ -19,7 +19,7 @@ export class Answer
 {
   declare id: CreationOptional<number>;
   declare user_id: number;
-  declare question_id: number;
+  declare question_id: string;
   declare content: string;
 }
 
@@ -40,7 +40,7 @@ Answer.init(
       },
     },
     question_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       references: {
         model: 'Question',

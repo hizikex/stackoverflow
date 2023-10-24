@@ -14,8 +14,8 @@ export const updateUserProfile = async ( currentUser: User | undefined, body: Up
     return updateUser;
 };
 
-export const getUserProfile = async (username: string, currentUser: User | undefined): Promise<ProfileResponse> => {
-    const user = await User.findOne({  where: {username: username}});
+export const getUserProfile = async (currentUser: User | undefined): Promise<ProfileResponse> => {
+    const user = await User.findOne({  where: {username: currentUser?.username}});
     if ( !user ) throw new ResourceNotFoundError('User not found', null);
 
     const result: ProfileResponse = {

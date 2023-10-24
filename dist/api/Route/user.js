@@ -29,4 +29,5 @@ const RequestHandler = __importStar(require("../requestHandlers/user"));
 const router = (0, express_1.Router)();
 exports.userRoutes = router;
 router.post('/', RequestHandler.registerUser);
+router.post('/login', RequestHandler.loginUser);
 //# sourceMappingURL=user.js.map

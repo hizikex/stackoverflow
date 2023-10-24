@@ -5,7 +5,7 @@ import { Question } from "../models/question";
 import { User } from "../models/users";
 import { logger } from "../utils/logger";
 
-export const processAnswer = async (user: User, questionId: number, body: AnswerCreationRequest): Promise<AnswerCreationResponse> => {
+export const processAnswer = async (user: User, questionId: string, body: AnswerCreationRequest): Promise<AnswerCreationResponse> => {
     if (!user) {
         throw new ResourceNotFoundError('User not found', null)
     }
@@ -28,3 +28,7 @@ export const processAnswer = async (user: User, questionId: number, body: Answer
         answer: createAnswer
     }
 };
+
+export const processAnswerUpdate = async () => {
+
+}

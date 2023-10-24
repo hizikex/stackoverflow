@@ -1,6 +1,5 @@
 import { Router } from "express";
 import * as RequestHandler from '../requestHandlers/user';
-import { authenticate } from "../middleware/authenticate";
 
 const router = Router();
 

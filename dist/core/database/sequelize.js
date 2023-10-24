@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Sequelize = exports.sequelize = void 0;
 const sequelize_1 = require("sequelize");
 Object.defineProperty(exports, "Sequelize", { enumerable: true, get: function () { return sequelize_1.Sequelize; } });
-const sequelizeConfig = require('../database/config/config')[process.env.NODE_ENV || 'development'];
+const sequelizeConfig = require('../config/config')[process.env.NODE_ENV || 'development'];
 const { database, username, password } = sequelizeConfig, otherConfig = __rest(sequelizeConfig, ["database", "username", "password"]);
 const modifiedConfig = Object.assign(Object.assign({}, otherConfig), { defind: {
         underscored: true
