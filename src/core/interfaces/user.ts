@@ -44,6 +44,10 @@ export interface UpdateUserProfile {
   image?: string;
 }
 
+export interface GetUserProfileData {
+  username: string;
+}
+
 export interface ProfileResponse {
   email: string;
   phone: string;

@@ -6,7 +6,7 @@ export default class ConflictError extends DomainError {
 
     protected httpCode = 401;
 
-    public constructor(message: string = Errors.NOT_AUTHENTICATED, error: Error, data: any = null, success = false) {
+    public constructor(message: string = Errors.NOT_AUTHENTICATED, error: Error | null, data: any = null, success = false) {
         super(message, error, data, success);
         Error.captureStackTrace(this, this.constructor);
     }

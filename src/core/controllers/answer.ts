@@ -1,3 +1,4 @@
+import ConflictError from "../errors/AuthenticationError";
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import { AnswerCreationRequest, AnswerCreationResponse } from "../interfaces/answer";
 import { Answer } from "../models/answers";
@@ -24,11 +25,25 @@ export const processAnswer = async (user: User, questionId: string, body: Answer
 
     logger.info('Answer creation successful')
     return {
-        message: 'Answer creation successful',
         answer: createAnswer
     }
 };
 
-export const processAnswerUpdate = async () => {
+export const processAnswerUpdate = async ( currentUser: User, answerId: string, body: AnswerCreationRequest ): Promise<{[key: string]: any}> => {
+    if (!currentUser) {
+        throw new ResourceNotFoundError('User not found', null)
+    }
 
-}
+    const answerExist = await Answer.findOne({ where: {id: answerId} });
+    if (!answerExist) {
+        throw new ResourceNotFoundError('Answer not found', null)
+    }
+
+    if (currentUser.id != answerExist.user_id) {
+        throw new ConflictError('Update can only be done by author', null)
+    }
+
+    const updatedAnswer = await Answer.update(body, {where: {id: answerId}});
+
+    return updatedAnswer
+};

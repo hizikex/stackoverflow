@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { responseHandler } from "../../core/helpers/utilities";
 import * as profileController from "../../core/controllers/profile";
-import { validateUpdate } from "../../core/validations/userValidations";
+import { validateUserProfileUpdate } from "../../core/validations/userValidations";
 import { ResponseMessage } from "../../core/constant/responses";
 
 export const updateUser: RequestHandler = async (
@@ -10,7 +10,7 @@ export const updateUser: RequestHandler = async (
   next
 ): Promise<void> => {
   try {
-    const validateUpdateData = validateUpdate(req.body);
+    const validateUpdateData = validateUserProfileUpdate(req.body);
     const response = await profileController.updateUserProfile(
       res.locals.user,
       validateUpdateData
@@ -29,7 +29,7 @@ export const userProfile: RequestHandler = async (
 ): Promise<void> => {
   try {
     const response = await profileController.getUserProfile(
-      res.locals.user
+      req.params.username
     );
 
     res.json(responseHandler(response, ResponseMessage.UserProfile));

@@ -1,5 +1,5 @@
 import joi from 'joi';
-import { UpdateUserProfile, UserLoginRequest, UserRegistrationRequest } from '../interfaces/user';
+import { GetUserProfileData, UpdateUserProfile, UserLoginRequest, UserRegistrationRequest } from '../interfaces/user';
 import { validate } from '../helpers/utilities';
 
 const { object, string } = joi.types();
@@ -31,13 +31,22 @@ export const validateLogin = (requestData: { [key: string]: any }): UserLoginReq
   );
 };
 
-export const validateUpdate = (requestData: { [key: string]: any }): UpdateUserProfile => {
+export const validateUserProfileUpdate = (requestData: { [key: string]: any }): UpdateUserProfile => {
   return validate(
     requestData,
     object.keys({
       phone: string.min(6),
       bio: string.min(20).optional().allow('').max(255),
       image: string.min(5).optional().allow('').max(255)
+    })
+  );
+};
+
+export const validateGetUserProfileData = (requestData: { [key: string]: any }): GetUserProfileData => {
+  return validate(
+    requestData,
+    object.keys({
+      username: string.trim().min(3).required(),
     })
   );
 };

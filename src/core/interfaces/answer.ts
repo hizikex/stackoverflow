@@ -10,6 +10,5 @@ export interface AnswerCreationRequest {
 }
 
 export interface AnswerCreationResponse {
-    message: string;
     answer: any;
 }

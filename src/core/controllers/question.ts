@@ -86,7 +86,7 @@ export const processListQuestions = async ( searchParams: QuestionSearchParams )
     where: whereClause,
     limit: searchParams.limit,
     offset: searchParams.offset,
-    attributes: ['title', 'content'],
+    attributes: ['id', 'title', 'content'],
     include: [
       {
         model: User,
