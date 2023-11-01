@@ -10,7 +10,7 @@ export const createAnswer: RequestHandler = async (
   next
 ): Promise<void> => {
   try {
-    const validatedAnswerData = await validateAnswerCreation(req.body);
+    const validatedAnswerData = validateAnswerCreation(req.body);
     const response = await answerController.processAnswer(
       res.locals.user,
       req.params.questionId,
@@ -29,14 +29,47 @@ export const updateAnswer: RequestHandler = async (
   next
 ): Promise<void> => {
   try {
-    const validatedAnswerData = await validateAnswerCreation(req.body);
+    const validatedAnswerData = validateAnswerCreation(req.body);
     const response = await answerController.processAnswerUpdate(
       res.locals.user,
-      req.params.questionId,
+      req.params.answerId,
       validatedAnswerData
     );
 
-    res.json(responseHandler(response, ResponseMessage.CreateAnswer));
+    res.json(responseHandler(response, ResponseMessage.UpdateAnswer));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAnswers: RequestHandler = async (
+  req,
+  res,
+  next
+): Promise<void> => {
+  try {
+    const response = await answerController.processGetAnswers(
+      req.params.questionId
+    );
+
+    res.json(responseHandler(response, ResponseMessage.GetAnswer));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteAnswer: RequestHandler = async (
+  req,
+  res,
+  next
+): Promise<void> => {
+  try {
+    const response = await answerController.processDeleteAnswer(
+      res.locals.user,
+      req.params.answerId
+    );
+
+    res.json(responseHandler(response, ResponseMessage.DeleteAnswer));
   } catch (error) {
     next(error);
   }
