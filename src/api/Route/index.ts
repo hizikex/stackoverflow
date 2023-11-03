@@ -2,8 +2,9 @@ import { Router, Request, Response } from "express";
 import { userRoutes } from "./user";
 import { profileRoutes } from "./profile";
 import { questionRoutes } from './question';
-import { tagRoutes } from "./tag";
 import { answerRoutes } from "./answer";
+import { searchRoutes } from "./search";
+
 
 export const routes = (): Router => {
     const router = Router();
@@ -14,8 +15,8 @@ export const routes = (): Router => {
     router.use('/api/users', userRoutes);
     router.use('/api/user/profile', profileRoutes);
     router.use('/api/questions', questionRoutes);
-    router.use('/api/tags', tagRoutes);
     router.use('/api/answers', answerRoutes);
+    router.use('/api/search', searchRoutes);
 
     return router;
 }
