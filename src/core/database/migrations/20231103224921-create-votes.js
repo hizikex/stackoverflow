@@ -13,8 +13,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      vote_type: {
-        type: Sequelize.ENUM('upvote', 'downvote')
+      voted: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
       created_at: {
         allowNull: false,

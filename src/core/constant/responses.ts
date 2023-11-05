@@ -14,5 +14,6 @@ export enum ResponseMessage {
     GetAnswer = 'List of answers to this question',
     DeleteAnswer = 'Answer deleted successfully',
     Search = 'Searched result',
-    ZeroSearch = 'No result found'
+    ZeroSearch = 'No result found',
+    Vote = 'Vote created'
 };

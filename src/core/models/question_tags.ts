@@ -24,11 +24,19 @@ QuestionTag.init(
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
+      references: {
+        model: 'questions',
+        key: 'id'
+      }
     },
     tag_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
+      references: {
+        model: 'tags',
+        key: 'id'
+      }
     },
   },
   {

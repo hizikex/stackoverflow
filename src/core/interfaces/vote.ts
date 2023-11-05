@@ -13,3 +13,6 @@ export interface VoteRequest {
     vote_type: VoteType;
 }
 
+export interface VoteResponse {
+    vote: any;
+}

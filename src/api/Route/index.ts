@@ -4,6 +4,7 @@ import { profileRoutes } from "./profile";
 import { questionRoutes } from './question';
 import { answerRoutes } from "./answer";
 import { searchRoutes } from "./search";
+import { voteRoutes } from "./vote";
 
 
 export const routes = (): Router => {
@@ -17,6 +18,7 @@ export const routes = (): Router => {
     router.use('/api/questions', questionRoutes);
     router.use('/api/answers', answerRoutes);
     router.use('/api/search', searchRoutes);
+    router.use('/api/vote', voteRoutes);
 
     return router;
 }

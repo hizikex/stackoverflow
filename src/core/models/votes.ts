@@ -12,7 +12,7 @@ import { Answer } from "./answers";
 export class Vote
   extends Model<
     InferAttributes<Vote>,
-    InferCreationAttributes<Vote>
+    InferCreationAttributes<Vote, { omit: 'user_id' | 'answer_id' }>
   >
   implements VoteAttributes
 {
