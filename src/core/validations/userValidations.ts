@@ -9,7 +9,7 @@ export const validateUserRegistration = (requestData: { [key: string]: any }): U
     requestData,
     object.keys({
       username: string.trim().min(3).required(),
-      email: string.trim().pattern(new RegExp('^\\S+@\\S+\\.\\S+$')).required(),
+      email: string.trim().email().required(),
       password: string.min(6).required(),
       phone: string.min(6),
       bio: string.min(20).optional().allow('').max(255),
@@ -25,7 +25,7 @@ export const validateLogin = (requestData: { [key: string]: any }): UserLoginReq
   return validate(
     requestData,
     object.keys({
-      email: string.trim().pattern(new RegExp('^\\S+@\\S+\\.\\S+$')).required(),
+      email: string.trim().email().required(),
       password: string.min(6).required()
     })
   );

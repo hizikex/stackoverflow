@@ -1,6 +1,6 @@
-import * as redis from 'redis';
+import { createClient } from 'redis';
 
-const client = redis.createClient({
+const client = createClient({
   host: 'localhost',
   port: 6379,
 });
@@ -10,5 +10,5 @@ client.on('connect', () => {
 });
 
 client.on('error', (err: any) => {
-  console.error('Redis Error: ', err);
+  console.error('Redis Client Error: ', err);
 });

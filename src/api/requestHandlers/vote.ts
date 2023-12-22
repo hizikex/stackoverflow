@@ -5,7 +5,7 @@ import { ResponseMessage } from "../../core/constant/responses";
 
 export const vote: RequestHandler = async (req, res, next): Promise<void> => {
   try {
-    const response = await voteController.processAnswerVote(res.locals.user, req.params.answerId, req.body);
+    const response = await voteController.processAnswerVote(req.body.answerId, req.body, res.locals.user);
 
     res.json(responseHandler(response, ResponseMessage.Vote));
   } catch (error) {

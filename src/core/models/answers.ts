@@ -61,7 +61,7 @@ Answer.init(
 );
 
 Answer.belongsTo(User, {
-  foreignKey: "id",
+  foreignKey: "user_id",
   as: "user",
 });
 

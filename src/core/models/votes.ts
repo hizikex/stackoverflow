@@ -12,7 +12,7 @@ import { Answer } from "./answers";
 export class Vote
   extends Model<
     InferAttributes<Vote>,
-    InferCreationAttributes<Vote, { omit: 'user_id' | 'answer_id' }>
+    InferCreationAttributes<Vote>
   >
   implements VoteAttributes
 {
@@ -43,15 +43,16 @@ Vote.init(
     sequelize,
     tableName: "votes",
     underscored: true,
+    freezeTableName: true
   }
 );
 
 Vote.belongsTo(User, {
-  foreignKey: "id",
+  foreignKey: "user_id",
   as: "user",
 });
 
 Vote.belongsTo(Answer, {
-  foreignKey: "id",
+  foreignKey: "answer_id",
   as: "answer",
 });

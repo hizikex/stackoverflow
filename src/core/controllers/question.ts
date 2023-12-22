@@ -14,7 +14,7 @@ import { Op } from "sequelize";
 
 export const processQuestionCreation = async (
   body: QuestionRequest,
-  Author: Question | undefined
+  Author: User | undefined
 ): Promise<QuestionCreationResponse> => {
   if (!Author) {
     const error = new Error("not found");

@@ -9,7 +9,7 @@
     "starts": "concurrently npm:start:*",
     "lint": "eslint",
     "migrate": "sequelize db:migrate",
-    "db:create": "sequelize db:create"
+    "dbcreate": "sequelize db:create"
   },
   "keywords": [],
   "author": "",

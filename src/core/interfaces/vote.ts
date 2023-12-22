@@ -10,6 +10,8 @@ export interface VoteAttributes {
 }
 
 export interface VoteRequest {
+    user_id: string;
+    answer_id: string;
     vote_type: VoteType;
 }
 

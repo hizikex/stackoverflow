@@ -13,10 +13,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      voted: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
+      vote_type: {
+        type: Sequelize.ENUM('upvote', 'downvote'),
+        allowNull: false
       },
       created_at: {
         allowNull: false,
