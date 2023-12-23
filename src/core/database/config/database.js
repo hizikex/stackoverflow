@@ -8,27 +8,33 @@ const databaseConfig = {
   host: process.env.MYSQL_HOST || '127.0.0.1',
   dialect: 'mysql',
   dialectOptions: {
-    bigNumberStrings: true
-  }
+    bigNumberStrings: true,
+  },
 };
 
 module.exports = {
   development: {
-    ...databaseConfig
+    ...databaseConfig,
   },
   test: {
-    ...databaseConfig
+    ...databaseConfig,
   },
   staging: {
-    ...databaseConfig
+    ...databaseConfig,
   },
   production: {
     ...databaseConfig,
-    logging: false
-  }
+    logging: false,
+  },
 };
 
-const { database, username, password, ...sequelizeDatabaseConfig } = databaseConfig;
-const sequelize = new Sequelize(database, username, password, sequelizeDatabaseConfig);
+const { database, username, password, ...sequelizeDatabaseConfig } =
+  databaseConfig;
+const sequelize = new Sequelize(
+  database,
+  username,
+  password,
+  sequelizeDatabaseConfig,
+);
 
 export { sequelize };

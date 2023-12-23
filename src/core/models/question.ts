@@ -4,22 +4,25 @@ import {
   InferAttributes,
   CreationOptional,
   InferCreationAttributes,
-} from "sequelize";
-import { sequelize } from "../database/sequelize";
-import { QuestionAttributes } from "../interfaces/questions";
-import { User } from "./users";
-import { QuestionTag } from "./question_tags";
+} from 'sequelize';
+import { sequelize } from '../database/sequelize';
+import { QuestionAttributes } from '../interfaces/questions';
+import { User } from './users';
+import { QuestionTag } from './question_tags';
 
 export class Question
   extends Model<
     InferAttributes<Question>,
-    InferCreationAttributes<Question, { omit: "id" }>
+    InferCreationAttributes<Question, { omit: 'id' }>
   >
   implements QuestionAttributes
 {
   declare id: CreationOptional<number>;
+
   declare author_id: number;
+
   declare title: string;
+
   declare content: string;
 }
 
@@ -51,17 +54,17 @@ Question.init(
   },
   {
     sequelize,
-    tableName: "questions",
+    tableName: 'questions',
     underscored: true,
-  }
+  },
 );
 
 Question.belongsTo(User, {
-  foreignKey: "author_id",
-  as: "author",
+  foreignKey: 'author_id',
+  as: 'author',
 });
 
 Question.hasMany(QuestionTag, {
-  foreignKey: "question_id",
-  onDelete: 'CASCADE'
+  foreignKey: 'question_id',
+  onDelete: 'CASCADE',
 });

@@ -3,22 +3,23 @@ import {
   DataTypes,
   InferAttributes,
   InferCreationAttributes,
-} from "sequelize";
-import { sequelize } from "../database/sequelize";
-import { User } from "./users";
-import { VoteAttributes, VoteType } from "../interfaces/vote";
-import { Answer } from "./answers";
+} from 'sequelize';
+import { sequelize } from '../database/sequelize';
+import { User } from './users';
+import { VoteAttributes, VoteType } from '../interfaces/vote';
+import { Answer } from './answers';
 
 export class Vote
   extends Model<
     InferAttributes<Vote>,
-    InferCreationAttributes<Vote>
+    InferCreationAttributes<Vote, { omit: 'vote_type' }>
   >
   implements VoteAttributes
 {
-
   declare user_id: number;
+
   declare answer_id: number;
+
   declare vote_type: VoteType;
 }
 
@@ -37,22 +38,23 @@ Vote.init(
     vote_type: {
       type: DataTypes.ENUM('upvote', 'downvote'),
       allowNull: false,
+      defaultValue: 'downvote',
     },
   },
   {
     sequelize,
-    tableName: "votes",
+    tableName: 'votes',
     underscored: true,
-    freezeTableName: true
-  }
+    freezeTableName: true,
+  },
 );
 
 Vote.belongsTo(User, {
-  foreignKey: "user_id",
-  as: "user",
+  foreignKey: 'user_id',
+  as: 'user',
 });
 
 Vote.belongsTo(Answer, {
-  foreignKey: "answer_id",
-  as: "answer",
+  foreignKey: 'answer_id',
+  as: 'answer',
 });

@@ -9,8 +9,8 @@ module.exports = {
         primaryKey: true,
         references: {
           model: 'questions',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       tag_id: {
         type: Sequelize.INTEGER,
@@ -18,20 +18,20 @@ module.exports = {
         primaryKey: true,
         references: {
           model: 'tags',
-          key: 'id'
-        }
+          key: 'id',
+        },
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('question_tags');
-  }
+  },
 };

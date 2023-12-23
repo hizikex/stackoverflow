@@ -1,8 +1,8 @@
-import { RequestHandler } from "express";
-import { responseHandler } from "../../core/helpers/utilities";
-import * as tagController from "../../core/controllers/tag";
-import { ResponseMessage } from "../../core/constant/responses";
-import { validateTagUpdateInput } from "../../core/validations/tag";
+import { RequestHandler } from 'express';
+import { responseHandler } from '../../core/helpers/utilities';
+import * as tagController from '../../core/controllers/tag';
+import { ResponseMessage } from '../../core/constant/responses';
+import { validateTagUpdateInput } from '../../core/validations/tag';
 
 export const getTag: RequestHandler = async (req, res, next): Promise<void> => {
   try {
@@ -17,13 +17,13 @@ export const getTag: RequestHandler = async (req, res, next): Promise<void> => {
 export const updateTag: RequestHandler = async (
   req,
   res,
-  next
+  next,
 ): Promise<void> => {
   try {
     const validTagUpdateInput = validateTagUpdateInput(req.body);
     const response = await tagController.processUpdateTag(
       validTagUpdateInput,
-      req.params.tagName
+      req.params.tagName,
     );
 
     res.json(responseHandler(response, ResponseMessage.UpdateTag));

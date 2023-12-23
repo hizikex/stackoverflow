@@ -1,19 +1,42 @@
-import { Model, DataTypes, InferAttributes, CreationOptional, InferCreationAttributes } from 'sequelize';
+import {
+  Model,
+  DataTypes,
+  InferAttributes,
+  CreationOptional,
+  InferCreationAttributes,
+} from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import { UserAttributes } from '../interfaces/user';
 
-export class User extends Model<InferAttributes<User>, InferCreationAttributes<User, { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' }>> implements UserAttributes {
+export class User
+  extends Model<
+    InferAttributes<User>,
+    InferCreationAttributes<
+      User,
+      { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' }
+    >
+  >
+  implements UserAttributes
+{
+  declare id: CreationOptional<number>;
 
-declare id: CreationOptional<number>;
-declare username: string;
-declare email: string;
-declare password: string;
-declare phone: string;
-declare bio?: string;
-declare image?: string;
-declare is_verified: boolean;
-declare is_admin: boolean;
-declare reputation: number;
+  declare username: string;
+
+  declare email: string;
+
+  declare password: string;
+
+  declare phone: string;
+
+  declare bio?: string;
+
+  declare image?: string;
+
+  declare is_verified: boolean;
+
+  declare is_admin: boolean;
+
+  declare reputation: number;
 }
 
 User.init(
@@ -21,52 +44,53 @@ User.init(
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     bio: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     is_verified: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false
+      defaultValue: false,
     },
     is_admin: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: false
+      defaultValue: false,
     },
     reputation: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0
-    }
-  }, {
+      defaultValue: 0,
+    },
+  },
+  {
     sequelize,
     tableName: 'users',
-    underscored: true
-  }
+    underscored: true,
+  },
 );

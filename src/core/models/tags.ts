@@ -4,18 +4,16 @@ import {
   InferAttributes,
   CreationOptional,
   InferCreationAttributes,
-} from "sequelize";
-import { sequelize } from "../database/sequelize";
-import { TagAttributes } from "../interfaces/tag";
+} from 'sequelize';
+import { sequelize } from '../database/sequelize';
+import { TagAttributes } from '../interfaces/tag';
 
 export class Tag
-  extends Model<
-    InferAttributes<Tag>,
-    InferCreationAttributes<Tag>
-  >
+  extends Model<InferAttributes<Tag>, InferCreationAttributes<Tag>>
   implements TagAttributes
 {
   declare id: CreationOptional<number>;
+
   declare name: string;
 }
 
@@ -33,7 +31,7 @@ Tag.init(
   },
   {
     sequelize,
-    tableName: "tags",
+    tableName: 'tags',
     underscored: true,
-  }
+  },
 );

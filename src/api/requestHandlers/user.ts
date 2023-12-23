@@ -1,16 +1,16 @@
-import { RequestHandler } from "express";
-import { responseHandler } from "../../core/helpers/utilities";
-import * as userController from "../../core/controllers/user";
+import { RequestHandler } from 'express';
+import { responseHandler } from '../../core/helpers/utilities';
+import * as userController from '../../core/controllers/user';
 import {
   validateLogin,
   validateUserRegistration,
-} from "../../core/validations/userValidations";
-import { ResponseMessage } from "../../core/constant/responses";
+} from '../../core/validations/userValidations';
+import { ResponseMessage } from '../../core/constant/responses';
 
 export const registerUser: RequestHandler = async (
   req,
   res,
-  next
+  next,
 ): Promise<void> => {
   try {
     const validateUserData = validateUserRegistration(req.body);
@@ -26,7 +26,7 @@ export const registerUser: RequestHandler = async (
 export const loginUser: RequestHandler = async (
   req,
   res,
-  next
+  next,
 ): Promise<void> => {
   try {
     const validateLoginData = validateLogin(req.body);

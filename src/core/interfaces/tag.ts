@@ -1,12 +1,12 @@
 export interface TagAttributes {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
 export interface TagRequestAndResponse {
-    name: string;
+  name: string;
 }
 
 export interface TagUpdateRequest {
-    name: string;
+  name: string;
 }

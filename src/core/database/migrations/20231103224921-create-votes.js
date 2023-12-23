@@ -6,28 +6,28 @@ module.exports = {
       user_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       answer_id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       vote_type: {
         type: Sequelize.ENUM('upvote', 'downvote'),
-        allowNull: false
+        defaultValue: 'downvote',
       },
       created_at: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updated_at: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('votes');
-  }
+  },
 };

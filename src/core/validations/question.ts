@@ -1,8 +1,8 @@
-import { validate } from "../helpers/utilities";
-import { QuestionRequest, QuestionSearchParams } from "../interfaces/questions";
-import Joi from "joi";
-import { Errors } from "../constant/errors";
-import BadRequestError from "../errors/BadRequestError";
+import { validate } from '../helpers/utilities';
+import { QuestionRequest, QuestionSearchParams } from '../interfaces/questions';
+import Joi from 'joi';
+import { Errors } from '../constant/errors';
+import BadRequestError from '../errors/BadRequestError';
 
 export const validateQuestionCreation = (requestData: {
   [key: string]: any;
@@ -16,11 +16,11 @@ export const validateQuestionCreation = (requestData: {
   const result = schema.validate(requestData);
 
   if (result.error) {
-    const relevantError = new Error("Bad request occurred");
+    const relevantError = new Error('Bad request occurred');
     throw new BadRequestError(
       Errors.BAD_REQUEST,
       relevantError,
-      result.error.details[0].message
+      result.error.details[0].message,
     );
   }
 
@@ -37,7 +37,7 @@ export const questionListQuerySchema = (requestData: {
       tagName: Joi.string().optional(),
       limit: Joi.number().min(1).default(10),
       offset: Joi.number().min(0).default(0),
-    })
+    }),
   );
 };
 
@@ -48,6 +48,6 @@ export const deleteQuestionSchema = (requestData: {
     requestData,
     Joi.object({
       questionId: Joi.number().min(1).required(),
-    })
+    }),
   );
 };

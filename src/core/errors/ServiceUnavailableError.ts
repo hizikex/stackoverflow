@@ -6,7 +6,12 @@ export default class RequestValidationError extends DomainError {
 
   protected httpCode = 503;
 
-  public constructor(message: string = Errors.SERVICE_UNAVAILABLE, error: Error, data: any = null, success = false) {
+  public constructor(
+    message: string = Errors.SERVICE_UNAVAILABLE,
+    error: Error,
+    data: any = null,
+    success = false,
+  ) {
     super(message, error, data, success);
     Error.captureStackTrace(this, this.constructor);
   }

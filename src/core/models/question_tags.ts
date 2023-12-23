@@ -3,9 +3,9 @@ import {
   DataTypes,
   InferAttributes,
   InferCreationAttributes,
-} from "sequelize";
-import { sequelize } from "../database/sequelize";
-import { QuestionTagAttributes } from "../interfaces/question_tag";
+} from 'sequelize';
+import { sequelize } from '../database/sequelize';
+import { QuestionTagAttributes } from '../interfaces/question_tag';
 
 export class QuestionTag
   extends Model<
@@ -15,6 +15,7 @@ export class QuestionTag
   implements QuestionTagAttributes
 {
   declare question_id: number;
+
   declare tag_id: number;
 }
 
@@ -26,8 +27,8 @@ QuestionTag.init(
       allowNull: false,
       references: {
         model: 'questions',
-        key: 'id'
-      }
+        key: 'id',
+      },
     },
     tag_id: {
       type: DataTypes.INTEGER,
@@ -35,13 +36,13 @@ QuestionTag.init(
       allowNull: false,
       references: {
         model: 'tags',
-        key: 'id'
-      }
+        key: 'id',
+      },
     },
   },
   {
     sequelize,
-    tableName: "question_tags",
+    tableName: 'question_tags',
     underscored: true,
-  }
+  },
 );

@@ -1,4 +1,4 @@
 export interface QuestionTagAttributes {
-    question_id: number;
-    tag_id: number
+  question_id: number;
+  tag_id: number;
 }

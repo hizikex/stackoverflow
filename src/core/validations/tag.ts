@@ -1,6 +1,6 @@
-import joi from "joi";
-import { TagRequestAndResponse } from "../interfaces/tag";
-import { validate } from "../helpers/utilities";
+import joi from 'joi';
+import { TagRequestAndResponse } from '../interfaces/tag';
+import { validate } from '../helpers/utilities';
 
 const { object, string } = joi.types();
 
@@ -11,6 +11,6 @@ export const validateTagUpdateInput = (requestData: {
     requestData,
     object.keys({
       name: string.trim().min(2).max(500).required(),
-    })
+    }),
   );
 };
