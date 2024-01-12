@@ -16,18 +16,17 @@ export const authenticate = async (
   res: Response,
   next: NextFunction,
 ) => {
+  try {
   const token = req.header('Authorization');
 
   if (!token) {
     const error = new Error('not_authenticated');
     const authorizationError = new AuthorizationError(
       'Authorization denied. No token provided',
-      error,
-      { token },
+      error
     );
     throw authorizationError;
   }
-  try {
     const decodedToken = jwt.verify(
       token.replace('Bearer ', ''),
       setting.secretKey,
@@ -37,14 +36,13 @@ export const authenticate = async (
       const error = new Error('not_authenticated');
       const authorizationError = new AuthorizationError(
         'Authorization denied. User not found',
-        error,
-        { user },
+        error
       );
       throw authorizationError;
     }
     res.locals.user = user;
     next();
-  } catch (err) {
-    next();
+  } catch (error) {
+    next(error);
   }
 };
