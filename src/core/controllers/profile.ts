@@ -1,6 +1,7 @@
 import ResourceNotFoundError from '../errors/ResourceNotFoundError';
 import { UpdateUserProfile, ProfileResponse } from '../interfaces/user';
 import { User } from '../models/users';
+import { redisClient } from '../utils/redis';
 
 export const updateUserProfile = async (
   currentUser: User | undefined,
@@ -24,6 +25,11 @@ export const updateUserProfile = async (
 export const getUserProfile = async (
   username: string,
 ): Promise<ProfileResponse> => {
+  const cachedData = await redisClient.get(`user:${username}`);
+
+  if (cachedData) {
+    return JSON.parse(cachedData);
+  }
   const user = await User.findOne({ where: { username: username } });
   if (!user) throw new ResourceNotFoundError('User not found', null);
 
@@ -34,5 +40,6 @@ export const getUserProfile = async (
     image: user.image,
   };
 
+  await redisClient.set(`user:${username}`, JSON.stringify(result), 'EX', 30);
   return result;
 };

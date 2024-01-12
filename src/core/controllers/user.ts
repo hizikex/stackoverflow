@@ -10,7 +10,6 @@ import { User } from '../models/users';
 import AuthorizationError from '../errors/AuthorizationError';
 import { setting } from '../config/application';
 import { logger } from '../utils/logger';
-import { Vote } from '../models/votes';
 
 export const processUserRegistration = async (
   body: UserRegistrationRequest,
