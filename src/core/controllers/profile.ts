@@ -38,8 +38,9 @@ export const getUserProfile = async (
     phone: user.phone,
     bio: user.bio,
     image: user.image,
+    otp_enabled: user.otp_enabled
   };
 
-  await redisClient.set(`user:${username}`, JSON.stringify(result), 'EX', 30);
+  await redisClient.set(`user:${username}`, JSON.stringify(result), 'EX', 10800);
   return result;
 };

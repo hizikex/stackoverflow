@@ -29,7 +29,7 @@ export const processUserRegistration = async (
     password: hashPassword,
     phone: body.phone,
     bio: body.bio,
-    image: body.image,
+    image: body.image
   });
 
   logger.info('User registration successful');
@@ -71,6 +71,7 @@ export const processUserLogin = async (
     token: generateToken,
     bio: userExist.bio,
     image: userExist.image,
+    otp_enabled: userExist.otp_enabled
   };
 
   return result;

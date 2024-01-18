@@ -52,6 +52,32 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
+      otp_enabled: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
+      otp_verified: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      otp_ascii: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      otp_hex: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      otp_base32: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      otp_auth_url: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
