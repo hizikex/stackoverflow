@@ -9,7 +9,7 @@ import { voteRoutes } from './vote';
 export const routes = (): Router => {
   const router = Router();
   router.get('/', (_req: Request, res: Response) => {
-    res.send('Welcome to stack_overflow');
+    res.json('Welcome to stack_overflow');
   });
 
   router.use('/api/users', userRoutes);
