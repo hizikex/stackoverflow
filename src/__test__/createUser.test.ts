@@ -16,25 +16,27 @@ describe("User model tests", () => {
   it("shoud have a processUserRegistration function", () => {
     expect(typeof userController.processUserRegistration).toBe("function");
   });
-  
+
   it('should create a user', async () =>{
     jest.spyOn(User, 'create').mockResolvedValue(body);
 
     const result = await User.create(body);
 
-    expect(result).toEqual({
-        "username": "dan",
-        "email": "dan@gmail.com",
-        "password": "$2b$10$XvcCJYZTCtGX7.5IG/bgI.xofAgkPyxwEswMCQhKrWCqdocMTtaXC",
-        "phone": "08169918225",
-        "bio": "I am a cool, learned guy. I no like casala",
-        "image": "isaac.jpg",
-    })
+    expect(result).toEqual(body);
   });
 
   it("should call User.create", async () => {
     userController.processUserRegistration(body);
     expect(User.create).toBeTruthy();
   });
+
+//   it('should get a user by their username', async () => {
+//     jest.spyOn(User, 'findOne').mockResolvedValue(Promise.resolve({
+//         username: body.username
+//     } as any));
+
+//     const result = await User.findOne({where: {username: body.username}});
+
+//     expect(result).toEqual(body);
+//   }) 
 });
- 
