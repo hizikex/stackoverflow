@@ -29,14 +29,4 @@ describe("User model tests", () => {
     userController.processUserRegistration(body);
     expect(User.create).toBeTruthy();
   });
-
-//   it('should get a user by their username', async () => {
-//     jest.spyOn(User, 'findOne').mockResolvedValue(Promise.resolve({
-//         username: body.username
-//     } as any));
-
-//     const result = await User.findOne({where: {username: body.username}});
-
-//     expect(result).toEqual(body);
-//   }) 
 });

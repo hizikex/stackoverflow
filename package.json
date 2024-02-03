@@ -10,7 +10,8 @@
     "lint": "eslint",
     "migrate": "sequelize db:migrate",
     "dbcreate": "sequelize db:create",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "jest": "jest --detectOpenHandles"
   },
   "keywords": [],
   "author": "",

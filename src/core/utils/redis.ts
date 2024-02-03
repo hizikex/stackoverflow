@@ -12,3 +12,7 @@ redisClient.on('connect', () => {
 redisClient.on('error', (err: any) => {
   console.error('Redis Client Error: ', err);
 });
+
+afterAll(async () => {
+  await redisClient.quit();
+});
