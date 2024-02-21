@@ -9,12 +9,9 @@ export interface UserAttributes {
   is_verified: boolean;
   is_admin: boolean;
   reputation: number;
-  otp_enabled: Boolean;
-  otp_verified: Boolean;
-  otp_ascii?: string;
-  otp_hex?: string;
-  otp_base32?: string;
-  otp_auth_url?: string;
+  is_two_factor_auth_enabled: Boolean;
+  is_two_factor_auth_verified: Boolean;
+  two_factor_auth_secret: string;
 }
 
 export interface UserRegistrationRequest {
@@ -42,7 +39,7 @@ export interface UserLoginResponse {
   token: string;
   bio?: string;
   image?: string;
-  otp_enabled: boolean;
+  is_two_factor_auth_enabled: Boolean;
 }
 
 export interface UpdateUserProfile {

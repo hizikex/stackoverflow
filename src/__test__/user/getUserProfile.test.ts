@@ -1,7 +1,7 @@
-import { getUserProfile } from '../core/controllers/profile';
-import { User } from '../core/models/users';
-import { redisClient } from '../core/utils/redis';
-import ResourceNotFoundError from '../core/errors/ResourceNotFoundError';
+import { getUserProfile } from '../../core/controllers/profile';
+import { User } from '../../core/models/users';
+import { redisClient } from '../../core/utils/redis';
+import ResourceNotFoundError from '../../core/errors/ResourceNotFoundError';
 
 jest.mock('../core/models/users');
 jest.mock('../core/utils/redis');

@@ -57,6 +57,7 @@ export const processUserLogin = async (
       user: {
         id: userExist.id,
         username: userExist.username,
+        
       },
     },
     setting.secretKey,
@@ -71,7 +72,7 @@ export const processUserLogin = async (
     token: generateToken,
     bio: userExist.bio,
     image: userExist.image,
-    otp_enabled: userExist.otp_enabled
+    is_2FA_enabled: userExist.is_2FA_enabled
   };
 
   return result;

@@ -1,5 +1,5 @@
-import * as userController from "../core/controllers/user";
-import { User } from "../core/models/users";
+import * as userController from "../../core/controllers/user";
+import { User } from "../../core/models/users";
 jest.mock('../core/models/users');
 
 User.create = jest.fn();
