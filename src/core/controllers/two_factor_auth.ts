@@ -10,13 +10,8 @@ export const processEnableOrDisableTwoFactorAuth = async (
       throw new ResourceNotFoundError('User not found', null);
     }
 
-    if (!user.is_two_factor_auth_enabled === true) {
-      user.is_two_factor_auth_enabled = false;
+    user.is_two_factor_auth_enabled === true ? user.is_two_factor_auth_enabled = false : user.is_two_factor_auth_enabled = true;
       await user.save();
-    }
-
-    user.is_two_factor_auth_enabled = true;
-    await user.save();
   
     return {
         username: user.username,

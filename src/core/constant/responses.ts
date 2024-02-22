@@ -16,5 +16,6 @@ export enum ResponseMessage {
   Search = 'Searched result',
   ZeroSearch = 'No result found',
   Vote = 'Vote created',
-  Enable2FA = 'Two factor authentication is enabled'
+  Enable2FA = 'Two factor authentication is enabled',
+  Disable2FA = 'Two factor authentication is disabled'
 }

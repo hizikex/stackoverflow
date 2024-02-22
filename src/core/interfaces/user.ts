@@ -57,7 +57,7 @@ export interface ProfileResponse {
   phone: string;
   bio?: string;
   image?: string;
-  otp_enabled: boolean;
+  is_two_factor_auth_enabled: boolean;
 }
 
 export interface LogoutUser {
