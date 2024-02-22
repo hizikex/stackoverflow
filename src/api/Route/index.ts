@@ -5,6 +5,7 @@ import { questionRoutes } from './question';
 import { answerRoutes } from './answer';
 import { searchRoutes } from './search';
 import { voteRoutes } from './vote';
+import { twoFactorRoutes } from './two_factor_auth';
 
 export const routes = (): Router => {
   const router = Router();
@@ -18,6 +19,7 @@ export const routes = (): Router => {
   router.use('/api/answers', answerRoutes);
   router.use('/api/search', searchRoutes);
   router.use('/api/vote', voteRoutes);
+  router.use('/api/two-factor-auth', twoFactorRoutes)
 
   return router;
 };

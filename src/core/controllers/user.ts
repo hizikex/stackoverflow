@@ -72,7 +72,7 @@ export const processUserLogin = async (
     token: generateToken,
     bio: userExist.bio,
     image: userExist.image,
-    is_2FA_enabled: userExist.is_2FA_enabled
+    is_two_factor_auth_enabled: userExist.is_two_factor_auth_enabled
   };
 
   return result;
