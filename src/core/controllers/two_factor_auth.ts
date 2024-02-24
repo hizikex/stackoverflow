@@ -12,9 +12,7 @@ export const processEnableOrDisableTwoFactorAuth = async (
     throw new ResourceNotFoundError("User not found", null);
   }
 
-  user.is_two_factor_auth_enabled === true
-    ? (user.is_two_factor_auth_enabled = false)
-    : (user.is_two_factor_auth_enabled = true);
+  user.is_two_factor_auth_enabled = user.is_two_factor_auth_enabled === true ? false :true;
   await user.save();
 
   return {
@@ -41,7 +39,7 @@ export const processTwoFactorAuthToken = async (userId: number): Promise<TwoFact
   const result = {
     token: token
   }
-  
+
   return result
 };
 

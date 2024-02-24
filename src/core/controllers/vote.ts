@@ -26,13 +26,8 @@ export const processAnswerVote = async (
       answer_id: answerId,
     });
   } else {
-    if (voteExist.vote_type === 'downvote') {
-      voteExist.vote_type = 'upvote';
-      await voteExist.save();
-    } else {
-      voteExist.vote_type = 'downvote';
+    voteExist.vote_type = voteExist.vote_type === 'downvote' ? 'upvote' : 'downvote';
       await voteExist!.save();
-    }
   }
 
   return { vote: voteExist };

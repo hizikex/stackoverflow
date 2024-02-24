@@ -20,7 +20,7 @@ export class Vote
 
   declare answer_id: number;
 
-  declare vote_type: VoteType;
+  declare vote_type: 'upvote' | 'downvote';
 }
 
 Vote.init(
