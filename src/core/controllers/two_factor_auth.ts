@@ -36,11 +36,7 @@ export const processTwoFactorAuthToken = async (userId: number): Promise<TwoFact
   user.two_factor_auth_secret = secret;
   await user.save();
 
-  const result = {
-    token: token
-  }
-
-  return result
+  return { token: token }
 };
 
 export const processTwoFactorVerification = async (userId: number, token: string): Promise<TwoFactorVerificationResponse> => {
@@ -66,4 +62,4 @@ export const processTwoFactorVerification = async (userId: number, token: string
   return {
     message: 'Two-factor authentication verified successfully.'
   }
-}
+};
