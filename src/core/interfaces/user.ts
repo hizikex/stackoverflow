@@ -11,7 +11,7 @@ export interface UserAttributes {
   reputation: number;
   is_two_factor_auth_enabled: Boolean;
   is_two_factor_auth_verified: Boolean;
-  two_factor_auth_secret: string;
+  preferred_two_fa_method: 'email' | 'sms';
 }
 
 export interface UserRegistrationRequest {
@@ -60,6 +60,6 @@ export interface ProfileResponse {
   is_two_factor_auth_enabled: boolean;
 }
 
-export interface LogoutUser {
+export interface LogOutUser {
   token: string;
 }

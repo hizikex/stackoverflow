@@ -60,9 +60,10 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       },
-      two_factor_auth_secret: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      preferred_two_fa_method: {
+        type: Sequelize.ENUM('email', 'sms'),
+        allowNull: false,
+        defaultValue: 'sms'
       },
       created_at: {
         allowNull: false,

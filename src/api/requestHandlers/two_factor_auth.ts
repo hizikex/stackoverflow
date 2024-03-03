@@ -21,7 +21,7 @@ export const enableTwoFactorAuth: RequestHandler = async (
 
 export const sendTwoFactorAuthToken: RequestHandler = async (req, res, next): Promise<void> => {
     try {
-        const response = await authController.processTwoFactorAuthToken(
+        const response = await authController.processSendTwoFactorAuthToken(
             res.locals.user.id
         );
 

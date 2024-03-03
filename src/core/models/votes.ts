@@ -6,7 +6,7 @@ import {
 } from 'sequelize';
 import { sequelize } from '../database/sequelize';
 import { User } from './users';
-import { VoteAttributes, VoteType } from '../interfaces/vote';
+import { VoteAttributes } from '../interfaces/vote';
 import { Answer } from './answers';
 
 export class Vote

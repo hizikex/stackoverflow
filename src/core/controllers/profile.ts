@@ -1,7 +1,6 @@
 import ResourceNotFoundError from "../errors/ResourceNotFoundError";
 import { UpdateUserProfile, ProfileResponse } from "../interfaces/user";
 import { User } from "../models/users";
-import { redisClient } from "../utils/redis";
 
 export const updateUserProfile = async (
   currentUser: User | undefined,

@@ -26,6 +26,7 @@
     "@types/node": "^20.6.0",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",
+    "@vonage/server-sdk": "^3.13.1",
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.1",
     "cors": "^2.8.5",
@@ -42,6 +43,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.1",
+    "nexmo": "^2.9.1",
+    "nodemailer": "^6.9.10",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "redis": "^3.1.2",
@@ -51,10 +54,12 @@
     "speakeasy": "^2.0.0",
     "ts-jest": "^29.1.2",
     "ts-node-dev": "^2.0.0",
+    "twilio": "^4.22.0",
     "winston": "^3.10.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.11",
+    "@types/nodemailer": "^6.4.14",
     "@types/safe-json-stringify": "^1.1.2",
     "@types/speakeasy": "^2.0.10"
   }
