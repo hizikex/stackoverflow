@@ -52,8 +52,8 @@ export const processSendTwoFactorAuthToken = async (
   if (user.preferred_two_fa_method === "email") {
     sendTwoFactorTokenByEmail({
       email: user.email,
-      subject: "Your 2FA Token",
-      text: `You 2FA token is: ${token}`,
+      subject: "Verify with token",
+      text: `You two factor token is: ${token}`,
     });
   } else {
     sendSMS(
