@@ -10,10 +10,11 @@ export const createAnswer: RequestHandler = async (
   next,
 ): Promise<void> => {
   try {
+    const questionId = parseInt(req.params.questionId)
     const validatedAnswerData = validateAnswerCreation(req.body);
     const response = await answerController.processAnswer(
       res.locals.user,
-      req.params.questionId,
+      questionId,
       validatedAnswerData,
     );
 

@@ -52,31 +52,18 @@ module.exports = {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
-      otp_enabled: {
+      is_two_factor_auth_enabled: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
         defaultValue: false,
       },
-      otp_verified: {
+      is_two_factor_auth_verified: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
         defaultValue: false
       },
-      otp_ascii: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      otp_hex: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      otp_base32: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      otp_auth_url: {
-        type: Sequelize.STRING,
-        allowNull: true
+      preferred_two_fa_method: {
+        type: Sequelize.ENUM('email', 'sms'),
+        allowNull: false,
+        defaultValue: 'sms'
       },
       created_at: {
         allowNull: false,
@@ -85,7 +72,7 @@ module.exports = {
       updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
-      },
+      }
     });
   },
   async down(queryInterface, Sequelize) {

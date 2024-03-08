@@ -10,6 +10,7 @@ import { User } from '../models/users';
 import AuthorizationError from '../errors/AuthorizationError';
 import { setting } from '../config/application';
 import { logger } from '../utils/logger';
+import { io } from '../../app';
 
 export const processUserRegistration = async (
   body: UserRegistrationRequest,
@@ -31,6 +32,10 @@ export const processUserRegistration = async (
     bio: body.bio,
     image: body.image
   });
+
+  const message = `A new user, ${newUser.username} has been added`;
+
+  io.to(newUser.id.toString()).emit("user-added", message);
 
   logger.info('User registration successful');
   return { message: 'User registration successful', user: newUser };
@@ -57,6 +62,7 @@ export const processUserLogin = async (
       user: {
         id: userExist.id,
         username: userExist.username,
+        
       },
     },
     setting.secretKey,
@@ -71,7 +77,7 @@ export const processUserLogin = async (
     token: generateToken,
     bio: userExist.bio,
     image: userExist.image,
-    otp_enabled: userExist.otp_enabled
+    is_two_factor_auth_enabled: userExist.is_two_factor_auth_enabled
   };
 
   return result;

@@ -1,7 +1,7 @@
 import DomainError from './DomainError';
 import { Errors } from '../constant/errors';
 
-export default class ConflictError extends DomainError {
+export default class AuthenticationErrorError extends DomainError {
   protected error_name = 'not-authenticated';
 
   protected httpCode = 401;

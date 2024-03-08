@@ -13,7 +13,7 @@ export class User
     InferAttributes<User>,
     InferCreationAttributes<
       User,
-      { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' | 'otp_enabled' | 'otp_verified' | 'otp_ascii' | 'otp_hex' | 'otp_base32' | 'otp_auth_url' }
+      { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' | 'is_two_factor_auth_enabled' | 'is_two_factor_auth_verified' | 'preferred_two_fa_method' }
     >
   >
   implements UserAttributes
@@ -28,12 +28,9 @@ export class User
   declare is_verified: boolean;
   declare is_admin: boolean;
   declare reputation: number;
-  declare otp_enabled: boolean;
-  declare otp_verified: boolean;
-  declare otp_ascii?: string;
-  declare otp_hex?: string;
-  declare otp_base32?: string;
-  declare otp_auth_url?: string;
+  declare is_two_factor_auth_enabled: boolean;
+  declare is_two_factor_auth_verified: boolean;
+  declare preferred_two_fa_method: 'email' | 'sms';
 }
 
 User.init(
@@ -84,32 +81,19 @@ User.init(
       allowNull: false,
       defaultValue: 0,
     },
-    otp_enabled: {
+    is_two_factor_auth_enabled: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false,
     },
-    otp_verified: {
+    is_two_factor_auth_verified: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
       defaultValue: false
     },
-    otp_ascii: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    otp_hex: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    otp_base32: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    otp_auth_url: {
-      type: DataTypes.STRING,
-      allowNull: true
-    },
+    preferred_two_fa_method: {
+      type: DataTypes.ENUM('email', 'sms'),
+      allowNull: false,
+      defaultValue: 'email'
+    }
   },
   {
     sequelize,
