@@ -53,7 +53,7 @@ export const processSendTwoFactorAuthToken = async (
     sendTwoFactorTokenByEmail({
       email: user.email,
       subject: "Verify with token",
-      text: `You two factor token is: ${token}`,
+      html: `${token}`,
     });
   } else {
     sendSMS(

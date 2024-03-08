@@ -14,7 +14,7 @@ export interface TwoFactorVerificationResponse {
 export interface MailOptions {
   email: string;
   subject: string;
-  text: string
+  html: string
 };
 
 export interface SmsOptions {
