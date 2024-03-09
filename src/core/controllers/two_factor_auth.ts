@@ -43,10 +43,13 @@ export const processSendTwoFactorAuthToken = async (
       error
     );
   }
+  const currentTime = Math.floor(Date.now() / 1000);
+  const expirationTime = currentTime + 10 * 60;
   const { base32: secret } = speakeasy.generateSecret({ length: 6 });
   const token = speakeasy.totp({
     secret: secret,
     encoding: "base32",
+    time: expirationTime,
   });
 
   if (user.preferred_two_fa_method === "email") {
@@ -75,9 +78,12 @@ export const processTwoFactorVerification = async (
     throw new ResourceNotFoundError("User not found", null);
   }
 
+  const currentTime = Math.floor(Date.now() / 1000);
+  const expirationTime = currentTime + 10 * 60;
   const validateToken = speakeasy.totp.verify({
     secret: user.email && user.phone,
     encoding: "base32",
+    time: expirationTime,
     token: token,
   });
 
