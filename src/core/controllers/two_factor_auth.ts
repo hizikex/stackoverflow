@@ -43,13 +43,11 @@ export const processSendTwoFactorAuthToken = async (
       error
     );
   }
-  const currentTime = Math.floor(Date.now() / 1000);
-  const expirationTime = currentTime + 10 * 60;
+
   const { base32: secret } = speakeasy.generateSecret({ length: 6 });
   const token = speakeasy.totp({
     secret: secret,
     encoding: "base32",
-    time: expirationTime,
   });
 
   if (user.preferred_two_fa_method === "email") {
@@ -66,6 +64,8 @@ export const processSendTwoFactorAuthToken = async (
     );
   }
 
+  user.secret_token = secret;
+  await user.save();
   return { token: token };
 };
 
@@ -78,13 +78,16 @@ export const processTwoFactorVerification = async (
     throw new ResourceNotFoundError("User not found", null);
   }
 
-  const currentTime = Math.floor(Date.now() / 1000);
-  const expirationTime = currentTime + 10 * 60;
+  const secret = user.secret_token;
+  if (!secret) {
+    throw new BadRequestError("User's secret token is not set.", null);
+  }
+
   const validateToken = speakeasy.totp.verify({
-    secret: user.email && user.phone,
+    secret: user.secret_token,
     encoding: "base32",
-    time: expirationTime,
     token: token,
+    window: 2
   });
 
   if (!validateToken) {

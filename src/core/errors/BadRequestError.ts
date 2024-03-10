@@ -8,7 +8,7 @@ export default class BadRequestError extends DomainError {
 
   public constructor(
     message: string = Errors.BAD_REQUEST,
-    error: Error,
+    error: Error | null,
     data: any = null,
     success = false,
   ) {

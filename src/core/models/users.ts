@@ -13,7 +13,7 @@ export class User
     InferAttributes<User>,
     InferCreationAttributes<
       User,
-      { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' | 'is_two_factor_auth_enabled' | 'is_two_factor_auth_verified' | 'preferred_two_fa_method' }
+      { omit: 'id' | 'is_verified' | 'is_admin' | 'reputation' | 'is_two_factor_auth_enabled' | 'is_two_factor_auth_verified' | 'preferred_two_fa_method' | 'secret_token' }
     >
   >
   implements UserAttributes
@@ -31,6 +31,7 @@ export class User
   declare is_two_factor_auth_enabled: boolean;
   declare is_two_factor_auth_verified: boolean;
   declare preferred_two_fa_method: 'email' | 'sms';
+  declare secret_token: string;
 }
 
 User.init(
@@ -93,6 +94,10 @@ User.init(
       type: DataTypes.ENUM('email', 'sms'),
       allowNull: false,
       defaultValue: 'email'
+    },
+    secret_token: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   },
   {

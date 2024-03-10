@@ -12,6 +12,7 @@ export interface UserAttributes {
   is_two_factor_auth_enabled: Boolean;
   is_two_factor_auth_verified: Boolean;
   preferred_two_fa_method: 'email' | 'sms';
+  secret_token: string;
 }
 
 export interface UserRegistrationRequest {

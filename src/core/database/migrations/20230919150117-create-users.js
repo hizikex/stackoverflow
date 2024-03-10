@@ -63,7 +63,11 @@ module.exports = {
       preferred_two_fa_method: {
         type: Sequelize.ENUM('email', 'sms'),
         allowNull: false,
-        defaultValue: 'sms'
+        defaultValue: 'email'
+      },
+      secret_token: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       created_at: {
         allowNull: false,
