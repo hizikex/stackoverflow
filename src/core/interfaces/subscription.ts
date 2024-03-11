@@ -11,3 +11,7 @@ export interface QuestionSubscriptionResponse {
 export interface QuestionSubscriptionRequest {
   question_id: number;
 }
+
+export interface QuestionUnsubscriptionResponse {
+  message: string;
+}

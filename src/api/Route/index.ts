@@ -6,6 +6,7 @@ import { answerRoutes } from './answer';
 import { searchRoutes } from './search';
 import { voteRoutes } from './vote';
 import { twoFactorRoutes } from './two_factor_auth';
+import { subscriptionRoutes } from './subscription';
 
 export const routes = (): Router => {
   const router = Router();
@@ -19,7 +20,9 @@ export const routes = (): Router => {
   router.use('/api/answers', answerRoutes);
   router.use('/api/search', searchRoutes);
   router.use('/api/vote', voteRoutes);
-  router.use('/api/two-factor-auth', twoFactorRoutes)
+  router.use('/api/two-factor-auth', twoFactorRoutes);
+  router.use('/api/questions', subscriptionRoutes);
+
 
   return router;
 };
