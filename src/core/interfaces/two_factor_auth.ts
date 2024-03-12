@@ -12,7 +12,7 @@ export interface TwoFactorVerificationResponse {
 }
 
 export interface MailOptions {
-  email: string;
+  to: string;
   subject: string;
   html: string
 };
