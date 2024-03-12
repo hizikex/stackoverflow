@@ -18,5 +18,7 @@ export enum ResponseMessage {
   Vote = 'Vote created',
   EnableOrDisableTwoFa = 'Two factor authentication is enabled or disabled',
   SendTwoFaToken = 'Token sent successfully',
-  VerifyTwoFa = 'Two Factor Authenticaton Verification successful'
+  VerifyTwoFa = 'Two Factor Authenticaton Verification successful',
+  SubscribeToQuestion = 'Subscription to question is successful',
+  UnsubscribeQuestion = 'Successfully unsubscribe to question'
 }

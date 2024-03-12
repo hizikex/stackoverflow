@@ -8,7 +8,18 @@ export const subscribeToQuestion: RequestHandler = async (req, res, next) => {
         const parsedIntQuestionId = parseInt(req.params.questionId); 
         const response = await subscriptionController.processQuestionSubscription(res.locals.user.id, parsedIntQuestionId);
     
-        res.json(responseHandler(response, ResponseMessage.GetTag));
+        res.json(responseHandler(response, ResponseMessage.SubscribeToQuestion));
+      } catch (error) {
+        next(error);
+      }
+};
+
+export const unsubscribeQuestion: RequestHandler = async (req, res, next) => {
+    try {
+        const parsedIntQuestionId = parseInt(req.params.questionId); 
+        const response = await subscriptionController.processQuestionUnsubscription(res.locals.user.id, parsedIntQuestionId);
+    
+        res.json(responseHandler(response, ResponseMessage.UnsubscribeQuestion));
       } catch (error) {
         next(error);
       }
