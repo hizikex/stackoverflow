@@ -10,7 +10,7 @@ export const createAnswer: RequestHandler = async (
   next,
 ): Promise<void> => {
   try {
-    const questionId = parseInt(req.params.questionId)
+    const questionId = parseInt(req.params.questionId);
     const validatedAnswerData = validateAnswerCreation(req.body);
     const response = await answerController.processAnswer(
       res.locals.user,
@@ -19,6 +19,21 @@ export const createAnswer: RequestHandler = async (
     );
 
     res.json(responseHandler(response, ResponseMessage.CreateAnswer));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAnswer: RequestHandler = async (
+  req,
+  res,
+  next,
+): Promise<void> => {
+  try {
+    const answerId = parseInt(req.params.answerId);
+    const response = await answerController.processGetAnswer(answerId);
+
+    res.json(responseHandler(response, ResponseMessage.GetAnswer));
   } catch (error) {
     next(error);
   }
@@ -43,13 +58,13 @@ export const updateAnswer: RequestHandler = async (
   }
 };
 
-export const getAnswers: RequestHandler = async (
+export const getQuestionAnswers: RequestHandler = async (
   req,
   res,
   next,
 ): Promise<void> => {
   try {
-    const response = await answerController.processGetAnswers(
+    const response = await answerController.processGetQuestionAnswers(
       req.params.questionId,
     );
 

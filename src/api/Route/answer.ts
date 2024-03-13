@@ -5,8 +5,9 @@ import { authenticate } from '../middleware/authenticate';
 const router = Router();
 
 router.post('/:questionId', authenticate, RequestHandler.createAnswer);
+router.get('/:answerId', authenticate, RequestHandler.getAnswer);
 router.patch('/:answerId/edit', authenticate, RequestHandler.updateAnswer);
-router.get('/:questionId', authenticate, RequestHandler.getAnswers);
+router.get('/:questionId', authenticate, RequestHandler.getQuestionAnswers);
 router.delete('/:answerId', authenticate, RequestHandler.deleteAnswer);
 
 export { router as answerRoutes };

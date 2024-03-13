@@ -22,9 +22,9 @@ export const processAnswer = async (
     throw new ResourceNotFoundError('User not found', null);
   }
 
-  const questionExist = await Question.findOne({ where: { id: questionId } });
+  const question = await Question.findOne({ where: { id: questionId } });
 
-  if (!questionExist) {
+  if (!question) {
     throw new ResourceNotFoundError('Question not found', null);
   }
 
@@ -77,7 +77,7 @@ export const processAnswer = async (
           <body>
             <div class="container">
               <h2>New Answer to Your Subscribed Question</h2>
-              <p>A new answer has been provided to the question with ID: ${questionExist.id} you subscribed to. You can view the answer by following the link below:</p>
+              <p>A new answer has been provided to the question with ID: ${question.id} you subscribed to. You can view the answer by following the link below:</p>
               <p class="answer">[Insert Link to the Answer here]</p>
             </div>
           </body>
@@ -104,21 +104,27 @@ export const processAnswer = async (
   };
 };
 
+export const processGetAnswer = async (answerId: number): Promise<{ [key: string]: any }> => {
+  const answer = await Answer.findOne({ where: { id: answerId } });
+
+  if (!answer) {
+    throw new ResourceNotFoundError('Answer not found', null);
+  }
+
+  return answer;
+};
+
 export const processAnswerUpdate = async (
   currentUser: User,
   answerId: string,
   body: AnswerCreationRequest,
 ): Promise<{ [key: string]: any }> => {
-  if (!currentUser) {
-    throw new ResourceNotFoundError('User not found', null);
-  }
-
-  const answerExist = await Answer.findOne({ where: { id: answerId } });
-  if (!answerExist) {
+  const answer = await Answer.findOne({ where: { id: answerId } });
+  if (!answer) {
     throw new ResourceNotFoundError('Answer not found', null);
   }
 
-  if (currentUser.id !== answerExist.user_id) {
+  if (currentUser.id !== answer.user_id) {
     throw new AuthorizationError('Update can only be done by author', null);
   }
 
@@ -127,11 +133,11 @@ export const processAnswerUpdate = async (
   return updatedAnswer;
 };
 
-export const processGetAnswers = async (
+export const processGetQuestionAnswers = async (
   questionId: string,
 ): Promise<Answer[]> => {
-  const questionExist = await Question.findOne({ where: { id: questionId } });
-  if (!questionExist) {
+  const question = await Question.findOne({ where: { id: questionId } });
+  if (!question) {
     throw new ResourceNotFoundError('Question not found', null);
   }
 
@@ -158,12 +164,12 @@ export const processDeleteAnswer = async (
     throw new ResourceNotFoundError('User not found', null);
   }
 
-  const answerExist = await Answer.findOne({ where: { id: answerId } });
-  if (!answerExist) {
+  const answer = await Answer.findOne({ where: { id: answerId } });
+  if (!answer) {
     throw new ResourceNotFoundError('Answer not found', null);
   }
 
-  if (currentUser.id !== answerExist.user_id) {
+  if (currentUser.id !== answer.user_id) {
     throw new AuthorizationError('Only authors can delete answer', null);
   }
 
