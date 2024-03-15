@@ -16,7 +16,7 @@ export const subscribeToQuestion: RequestHandler = async (req, res, next) => {
 
 export const unsubscribeQuestion: RequestHandler = async (req, res, next) => {
     try {
-        const parsedIntQuestionId = parseInt(req.params.questionId); 
+        const parsedIntQuestionId = parseInt(req.params.questionId, 10);
         const response = await subscriptionController.processQuestionUnsubscription(res.locals.user.id, parsedIntQuestionId);
     
         res.json(responseHandler(response, ResponseMessage.UnsubscribeQuestion));
