@@ -94,8 +94,9 @@ export const processListQuestions = async (
         model: User,
         as: 'author',
         attributes: ['username'],
-      },
+      }
     ],
+      raw: true
   });
 
   if (!questions) {
@@ -122,3 +123,8 @@ export const processDeleteQuestion = async (
 
   return { message: 'Question deleted succesfully' };
 };
+
+export const countQuestions = async (): Promise<any> => {
+  const count = await Question.findAndCountAll();
+  return count;
+}

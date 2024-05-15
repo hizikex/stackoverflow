@@ -1,7 +1,7 @@
 import DomainError from './DomainError';
 import { Errors } from '../constant/errors';
 
-export default class RequestValidationError extends DomainError {
+export default class ServiceUnavailableError extends DomainError {
   protected error_name = 'service_unavailable';
 
   protected httpCode = 503;

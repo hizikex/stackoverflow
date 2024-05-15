@@ -20,5 +20,6 @@ export enum ResponseMessage {
   SendTwoFaToken = 'Token sent successfully',
   VerifyTwoFa = 'Two Factor Authenticaton Verification successful',
   SubscribeToQuestion = 'Subscription to question is successful',
-  UnsubscribeQuestion = 'Successfully unsubscribe to question'
+  UnsubscribeQuestion = 'Successfully unsubscribe to question',
+  CountQuestions = 'Question counted'
 }

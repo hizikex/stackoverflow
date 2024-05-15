@@ -57,3 +57,17 @@ export const deleteQuestion: RequestHandler = async (
     next(error);
   }
 };
+
+export const numberOfQuestions: RequestHandler = async (
+  req,
+  res,
+  next,
+): Promise<void> => {
+  try {
+    const response = await questionController.countQuestions();
+
+    res.json(responseHandler(response, ResponseMessage.CountQuestions));
+  } catch (error) {
+    next(error);
+  }
+};
