@@ -12,7 +12,7 @@
   },
   "rules": {
     "comma-style": ["error", "last"],
-    "comma-dangle": ["off"],
+    "comma-dangle": ["on"],
     "quotes": ["error", "single"],
     "prettier/prettier": ["error", { "singleQuote": true }]
   }

@@ -18,7 +18,7 @@ export const registerUser: RequestHandler = async (
       await userController.processUserRegistration(validateUserData);
 
     res.json(responseHandler(response, ResponseMessage.SuccessfulRegistration));
-  } catch (error) { 
+  } catch (error) {
     next(error);
   }
 };
