@@ -15,7 +15,7 @@ export const routes = (): Router => {
   });
 
   router.use('/api/users', userRoutes);
-  router.use('/api/user/profile', profileRoutes);
+  router.use('/api/users/profile', profileRoutes);
   router.use('/api/questions', questionRoutes);
   router.use('/api/answers', answerRoutes);
   router.use('/api/search', searchRoutes);

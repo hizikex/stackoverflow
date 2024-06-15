@@ -65,7 +65,7 @@ export const processUserLogin = async (
       },
     },
     setting.secretKey,
-    { expiresIn: '12h' },
+    { expiresIn: '1d' },
   );
 
   logger.info('Login successful');
