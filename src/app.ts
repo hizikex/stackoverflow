@@ -7,6 +7,7 @@ import http from 'http';
 import { Errors } from './core/constant/errors';
 import { routes } from './api/Route';
 import { handleErrors } from './api/middleware/handleError';
+import { serverAdapter } from './core/queue/bull-board';
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use(
   ),
 );
 app.use('/', routes());
+app.use('/admin/queues', serverAdapter.getRouter());
 
 app.use((req, res, _next): void => {
   res.status(404).send({

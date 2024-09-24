@@ -6,10 +6,16 @@ import { Errors } from '../../core/constant/errors';
 
 function handleErrors(
   err: Error,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ): Response {
+
+  if (req.path.startsWith('/api/users')) {
+    console.log('================>>>>>>>{{{}}}>>>>>>', 'NONONONOSENSE');
+    
+  }
+  
   if (err instanceof DomainError) {
     return res.status(err.getHttpCode()).send({
       status: err.getStatus(),

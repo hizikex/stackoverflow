@@ -15,6 +15,7 @@ const startServer = async (): Promise<void> => {
         ♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️ App listening on port: ${setting.port} ♦️♦️♦️♦️♦️♦️♦️♦️♦️♦️
         ###############################################################
         `);
+    logger.info('BullMQ Board is available at http://localhost:1122/admin/queues')
   });
 };
 

@@ -28,6 +28,7 @@ export const userProfile: RequestHandler = async (
   next,
 ): Promise<void> => {
   try {
+    console.log('------>>>>>', req.headers['x-dashboard-error-handler']);
     const response = await profileController.getUserProfile(
       req.params.username,
     );

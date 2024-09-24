@@ -6,6 +6,7 @@ import {
   UserRegistrationRequest,
 } from '../interfaces/user';
 import { validate } from '../helpers/utilities';
+import { passwordValidator } from '../helpers/validators';
 
 const { object, string } = joi.types();
 
@@ -17,7 +18,8 @@ export const validateUserRegistration = (requestData: {
     object.keys({
       username: string.trim().min(3).required(),
       email: string.trim().email().required(),
-      password: string.min(6).required(),
+      // password: string.min(6).required(),
+      password: passwordValidator.password().trim().min(8).required(),
       phone: string.min(6),
       bio: string.min(20).optional().allow('').max(255),
       image: string.min(5).optional().allow('').max(255),
